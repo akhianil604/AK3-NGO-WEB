@@ -6,16 +6,31 @@ const Query = require('../models/Query');
 
 const router = express.Router();
 
+// For regular users
 router.post('/register', async (req, res) => {
-    const { username, password, email, phone_no } = req.body;
+    const { name, password, email, phone_no,
+        dob, age, married, education, address,
+        city, state
+     } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
+
+        const usercount = await User.find({"role":"user"}).countDocuments()+1;
+        const usercode = "USR"+String(usercount).padStart(4, '0');
         const newUser = new User({ 
-            username: username, 
+            usercode: usercode,
+            name: name, 
             password: hashedPassword,
             email: email,
             phone_no: phone_no,
+            dob: dob,
+            age: age,
+            married: married,
+            education: education,
+            address: address,
+            city: city,
+            state: state,
         });
         await newUser.save();
         res.status(201).send('User registered');
@@ -26,10 +41,10 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { usercode, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ usercode });
         if (user && await bcrypt.compare(password, user.password)) {
             req.session.userId = user._id; 
             res.send('Login successful');
@@ -42,46 +57,39 @@ router.post('/login', async (req, res) => {
     }
 });
 
-//anonymous queries
-router.post('/mewAnonQuery', async (req, res) => {
-    const { username, email, phone_no, title, desc, files } = req.body;
-
-    try {
-        const newQuery = new Query({
-            username: username,
-            email: email,
-            phone_no: phone_no,
-            title: title, 
-            desc: desc,
-            files: files,
-        });
-        await newQuery.save(); 
-        res.status(201).send('Anonymous query created');
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error creating anonymous query');
-    }
-});
-
-//query from registered user
 router.post('/newQuery', async (req, res) => {
-    const { user_id, title, desc, files } = req.body;
+    const { user_id, name, email, phone_no, 
+        dob, age, married, education, address,
+        city, state, title, desc, category, files, 
+     } = req.body;
 
     const session = await mongoose.startSession();
     session.startTransaction();
 
     try {
         const newQuery = new Query({
-            user_id: user_id,
-            title: title,
+            user_id: user_id || null,
+            name: name, 
+            email: email,
+            phone_no: phone_no,
+            dob: dob,
+            age: age,
+            married: married,
+            education: education,
+            address: address,
+            city: city,
+            state: state,
+
+            title: title, 
             desc: desc,
+            category: category,
             files: files,
         });
         await newQuery.save({ session });
 
         await User.findByIdAndUpdate(
             user_id,
-            { $push: { queries: newQuery._id } }, 
+            { $push: { queries: { $each: [newQuery._id], $position: 0 }}}, 
             { session }
         );
         await session.commitTransaction();
@@ -96,9 +104,19 @@ router.post('/newQuery', async (req, res) => {
     }
 });
 
-router.get('/queries', async(req, res)=>{
-    const {role} =  req.body;
-    res.send(Query.find());
+router.get('/queriesFromRole', async(req, res)=>{
+    try {
+        const {user_id} =  req.query;
+        const user = await Query.findById(user_id);
+        const result = await Query.find({"history.0.assignedToRole" : user.role})
+        res.status(200).send(result); 
+    }
+    catch (error){
+        console.error(error);
+        res.status(500).send('Error getting queries');
+    }
 })
+
+
 
 module.exports = router;

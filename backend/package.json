@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "type": "module",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.21.1",
