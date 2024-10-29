@@ -9,6 +9,7 @@ const querySchema = new mongoose.Schema({
     
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     name: { type: String, required : true},
+    gender: {type: String, enum:["male", "female", "other"], required: true},
     dob: { type: Date, required: true},
     age: { type: Number, required: true},
     email: { type: String, required: true},
