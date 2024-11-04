@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "User-Portal.css";
+import "./User-Portal.css";
 
 function UserPortal() {
   function navigateTo(section) {
