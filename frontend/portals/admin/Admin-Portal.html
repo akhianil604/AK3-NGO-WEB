@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Admin-Portal.css">
+    <script src = "Admin-Portal.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <span class="nav-item">NGO54132</span>
+                </a></li>
+                <li><a href="#" onclick="navigateTo('Home')">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-item" id = "Pending">Pending Queries</span>
+                </a></li>
+                <li><a href="#" onclick="navigateTo('Assigned')">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <span class="nav-item" id = "My-Query">My Queries</span>
+                </a></li>
+                <li><a href="#" onclick = "navigateTo('HowToUse')">
+                    <i class="fa fa-question-circle"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+                <li><a href="#" class="logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <span class="nav-item">Logout</span>
+                </a></li>
+            </ul>
+        </nav>
+        <!--Pending Queries Page -->
+        <section id="Home" class="page-active">
+            <div class="main-skills" id="pendingTasksContainer"></div>
+        </section>
+        <!--My Queries -->
+        <section id="Assigned" class="page-hidden">
+            <div class="main-skills" id="assignedTasksContainer"></div>
+        </section>
+        <!--Dashboard -->
+        <section id = "Dashboard" class = "page-hidden">
+        </section>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Modal Title</h2>
+                <p id="modalCategory">Category: <span id="modalCategoryValue"></span></p>
+                <p id="modalDescription">Description: <span id="modalDescriptionValue"></span></p>
+            </div>
+        </div>
+              
+    </div>
+</body>
+</html>
