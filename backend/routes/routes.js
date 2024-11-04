@@ -1,27 +1,25 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv')
 const controllers = require('../controllers/controllers')
-const User = require('../models/User');
-const Query = require('../models/Query');
-const bcrypt = require('bcrypt');
 const auth = require('../auth');
 
 dotenv.config();
 const router = express.Router();
 
-// For regular users
 router.post('/registerUser', controllers.register);
-
 router.post('/login', controllers.login);
 
-router.post('/newQuery', auth.authenticateToken, controllers.newQuery);
+router.post('/newAnonQuery', controllers.newAnonQuery);
 
-router.get('/queriesFromRole', auth.authenticateToken, auth.authenticateRole, controllers.queriesFromRole);
+router.get('/getQueriesFromRole', auth.authenticateToken, controllers.getQueriesFromRole);
+router.get('getUserQueries', auth.authenticateToken, controllers.getUserQueries);
+router.get('/getAssignedQueries', auth.authenticateToken, controllers.getAssignedQueries);
+router.get('/getQueryStatus', auth.authenticateToken, controllers.getQueryStatus);
+
+router.post('/sendQueryToRole', auth.authenticateToken, controllers.sendQueryToRole);
 
 router.post('/acceptQuery', auth.authenticateToken, controllers.acceptQuery);
-
-
+router.post('/resolveQuery', auth.authenticateToken, controllers.resolveQuery);
+router.post('/rejectQuery', auth.authenticateToken, controllers.rejectQuery);
 
 module.exports = router;

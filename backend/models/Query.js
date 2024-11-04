@@ -6,6 +6,11 @@ const querySchema = new mongoose.Schema({
     category: { type: String, enums: ["harrassment", "forced_labor", 
         "human_trafficking", "child_marraige", "domestic_violence", 
         "dowry", "rehabilitation"], required: true },
+    files: [{
+        data: { type: Buffer, required: true }, 
+        contentType: { type: String, required: true }, 
+        filename: { type: String, required: true }, 
+    }],
     
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     name: { type: String, required : true},
@@ -23,19 +28,14 @@ const querySchema = new mongoose.Schema({
 
     status: { type: String, enum: ["open", "assigned", "resolved"], default: "open", required: true },
     assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "user", default: null },
+    // Maybe make separate db for history to not clutter up Query
     history: { type: [{
         timestamp: { type: Date, default: Date.now , required: true},
         assignedToRole: { type: String , enum:["admin", "ngo", "police"], required: true},
     }], default: [{
         timestamp: Date.now(),
         assignedToRole: "admin"
-    }]},
-    files: [{
-        data: { type: Buffer, required: true }, 
-        contentType: { type: String, required: true }, 
-        filename: { type: String, required: true }, 
-    }]
-    
+    }]}   
 });
 
 const Query = mongoose.model("Query", querySchema);

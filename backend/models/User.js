@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    usercode: { type: String, required: true}, //only used for login
+    usercode: { type: String, required: true, unique: true}, //only used for login
     name: { type: String, required : true},
     password: { type: String, required: true },
     gender: {type: String, enum: ["male", "female", "other"], required: true},
     dob: { type: Date, required: true},
     age: { type: Number, required: true},
-    email: { type: String, required: true,
+    email: { type: String, required: true, unique: true, 
         validate: {
             validator: function(v) {
                 return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
