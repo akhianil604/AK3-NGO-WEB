@@ -145,16 +145,6 @@ const newRegisteredQuery = async (req, res) => {
     }
 }
 
-const getQueriesFromRole = async(req, res)=>{
-    try {
-        const result = await Query.find({"history.0.assignedToRole" : req.user.role})
-        res.status(200).send(result); 
-    } catch (error){
-        console.error(error);
-        res.status(500).send('Error getting queries');
-    }
-}
-
 const sendQueryToRole = async(req, res)=>{
     try{
         const { queryId, targetRole, user } = req.body;
@@ -199,9 +189,9 @@ const acceptQuery = async(req, res)=>{
 
 const resolveQuery = async(req, res)=>{
     try{
-        const { queryId, user } = req.body;
+        const { queryId } = req.body;
         const queryDoc = await Query.findById(queryId);
-        if (queryDoc.assignedTo === user.id){
+        if (queryDoc.assignedTo === req.user.id){
             await Query.findByIdAndUpdate(queryId, {status: "resolved"});
         }
         else{
@@ -215,9 +205,9 @@ const resolveQuery = async(req, res)=>{
 
 const rejectQuery = async(req, res)=>{
     try{
-        const { queryId, user } = req.body;
+        const { queryId } = req.body;
         const queryDoc = await Query.findById(queryId);
-        if (queryDoc.assignedTo === user.id){
+        if (queryDoc.assignedTo === req.user.id){
             await Query.findByIdAndUpdate(queryId, {status: "open", assignedTo: null}); 
         }
         else{
@@ -229,9 +219,19 @@ const rejectQuery = async(req, res)=>{
     } 
 }
 
+const getQueriesFromRole = async(req, res)=>{
+    try {
+        const result = await Query.find({"history.0.assignedToRole" : req.user.role},{title:1, category:1, desc:1})
+        res.status(200).send(result); 
+    } catch (error){
+        console.error(error);
+        res.status(500).send('Error getting queries');
+    }
+}
+
 const getUserQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"user_id" : req.user.id})
+        const result = await Query.find({"user_id" : req.user.id},{title:1, category:1, desc:1})
         res.status(200).send(result); 
     } catch(error){
         console.error(error);
@@ -241,7 +241,7 @@ const getUserQueries = async(req, res)=>{
 
 const getAssignedQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"assignedTo" : req.user.id})
+        const result = await Query.find({"assignedTo" : req.user.id},{title:1, category:1, desc:1})
         res.status(200).send(result); 
     } catch(error){
         console.error(error);
@@ -249,7 +249,41 @@ const getAssignedQueries = async(req, res)=>{
     }
 }
 
+const getPendingQueries = async(req, res)=>{
+    try{
+        const result = await Query.find({"history.0.assignedToRole" : req.user.role, "assignedTo" : null},{title:1, category:1, desc:1})
+        res.status(200).send(result); 
+    } catch(error){
+        console.error(error);
+        res.status(500).send('Error getting queries');
+    }
+}
+
+const updateUserDetails = async(req,res)=>{
+    const {name, email, phone_no, address,
+        password, gender, education, married
+    }= req.body;
+
+    try{
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await Query.findByIdAndUpdate(req.user.id,{
+            name: name,
+            email: email,
+            phone_no: phone_no,
+            address: address,
+            password: hashedPassword,
+            gender: gender,
+            education: education,
+            married: married
+        })
+        res.status(200).send("Updated user details"); 
+    } catch(error){
+        console.error(error);
+        res.status(500).send('Error updating user details');
+    }
+}
+
 module.exports = {register, login, 
     newAnonQuery, newRegisteredQuery, 
-    getQueriesFromRole, getUserQueries, getAssignedQueries, getQueryStatus,
+    getQueriesFromRole, getUserQueries, getAssignedQueries, getPendingQueries, getQueryStatus,
     acceptQuery, resolveQuery, rejectQuery, sendQueryToRole, };

@@ -10,10 +10,12 @@ router.post('/registerUser', controllers.register);
 router.post('/login', controllers.login);
 
 router.post('/newAnonQuery', controllers.newAnonQuery);
+router.post('/newRegisteredQuery', auth.authenticateToken, controllers.newRegisteredQuery);
 
 router.get('/getQueriesFromRole', auth.authenticateToken, controllers.getQueriesFromRole);
 router.get('getUserQueries', auth.authenticateToken, controllers.getUserQueries);
 router.get('/getAssignedQueries', auth.authenticateToken, controllers.getAssignedQueries);
+router.get('/getPendingQueries', auth.authenticateToken, controllers.getPendingQueries);
 router.get('/getQueryStatus', auth.authenticateToken, controllers.getQueryStatus);
 
 router.post('/sendQueryToRole', auth.authenticateToken, controllers.sendQueryToRole);

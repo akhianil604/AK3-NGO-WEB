@@ -22,4 +22,4 @@ function authenticateToken(req, res, next) {
     })
   }
 
-module.exports = {generateToken, authenticateToken, authenticateRole}
+module.exports = {generateToken, authenticateToken}

@@ -38,7 +38,7 @@ nav {
 .page-active{
     padding: 20px;
     background: #f5f5f5;
-    height: calc(100vh - 20px); 
+    /* height: calc(100vh - 20px);  */
     overflow-y: auto;
 }
 
@@ -126,7 +126,7 @@ a:hover{
 
 .radio-group {
     display: flex;
-    gap: 0.5rem; 
+    gap: 5rem; 
     margin-top: 0.5rem;
 }
 
@@ -137,7 +137,7 @@ a:hover{
 }
 
 .radio-group input[type="radio"] {
-    margin: -10rem; 
+    width:auto;
 }
 
 .form-group label {
@@ -203,7 +203,7 @@ button:hover {
     justify-content: flex-start;
 }
 
-.main-skills .card {
+.main-skills .task-block-card {
     width: 30%;
     min-width: 200px;
     height: auto;
@@ -220,7 +220,7 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.main-skills .card button {
+.main-skills .task-block-card button {
     background: orangered;
     color: #fff;
     padding: 10px 20px;
@@ -230,7 +230,7 @@ button:hover {
     width: 6rem;
 }
 
-.main-skills .card button:hover {
+.main-skills .task-block-card button:hover {
     background: rgba(223, 70, 15, 0.856);
 }
 
@@ -247,40 +247,41 @@ button:hover {
 }
 .home-use h1{
     font-size: 4rem;
-    margin-left: 15rem;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 20px;
+    margin-left: auto;  
+    margin-right: auto;
 }
 #Pending{
     width: 31rem;
 }
 
 .home-use #MyQueries{
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
     width: 23rem;
 }
 .home-use .card{
     width: 20rem;
 }
 
-.main-skills .card .accept-button, .accept-button{
+.main-skills .task-block-card .accept-btn, .accept-btn{
     background-color: green;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.main-skills .card .accept-button:hover , .accept-button:hover{
+.main-skills .task-block-card .accept-btn:hover , .accept-btn:hover{
     background: rgba(0, 128, 0, 0.546);
 }
-.main-skills .card .reject-button, .reject-button{
+.main-skills .task-block-card .reject-btn, .reject-btn{
     background-color: red;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.main-skills .card .reject-button:hover , .reject-button:hover{
+.main-skills .task-block-card .reject-btn:hover , .reject-btn:hover{
     background: rgba(255, 0, 0, 0.546);
 }
 
@@ -303,7 +304,7 @@ button:hover {
     text-align: center;
     border-radius: 5rem;
 }
-#Accept .accept-button{
+#Accept .accept-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
@@ -327,7 +328,7 @@ button:hover {
     border-radius: 5rem;
 
 }
-#Reject .reject-button{
+#Reject .reject-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
@@ -362,7 +363,7 @@ button:hover {
     justify-content: center;
     margin-top: 1rem;
     margin-left: 10rem;
-}
+} 
 
                         /* My Profile */
 #Profile{
@@ -556,4 +557,17 @@ button {
 
 button:hover {
     background-color: #019d9b;
+}
+
+.main-skills .task-block-card .view-more-btn {
+    background: blue;
+    color: white;
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+} 
+
+.main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
+    background: #019d9b;
 }
