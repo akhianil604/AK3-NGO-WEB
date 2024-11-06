@@ -14,12 +14,6 @@ function navigateTo(pageId) {
     }
 }
 
-// function googleSignIn() {
-//     // This is just a placeholder function. To implement Google Sign-In, you would use Google's API.
-//     alert("Google Sign-In functionality will be implemented here.");
-// }
-
-
 // Show home page by Default 
 document.addEventListener('DOMContentLoaded', () => {
     navigateTo('home');
@@ -54,29 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Initial check in case sections are already in view
 });
-
-//While you scroll through about us page , text pops up 
-// document.addEventListener('DOMContentLoaded', function() {
-//     const reveals = document.querySelectorAll('.reveal');
-
-//     function revealOnScroll() {
-//         const windowHeight = window.innerHeight;
-//         const revealPoint = 150; // Adjust this value as needed
-
-//         reveals.forEach(reveal => {
-//             const sectionTop = reveal.getBoundingClientRect().top;
-//             if (sectionTop < windowHeight - revealPoint) {
-//                 reveal.classList.add('active');
-//             } else {
-//                 reveal.classList.remove('active');
-//             }
-//         });
-//     }
-
-//     window.addEventListener('scroll', revealOnScroll);
-//     revealOnScroll(); // Initial check in case sections are already in view
-// });
-
 
 //Google Pay API Part
 function onGooglePayLoaded() {

@@ -4,7 +4,7 @@ body {
     font-family: 'Lora', serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg,white, lightblue,cyan,blue,darkblue);
+    background: linear-gradient(135deg,rgb(70, 70, 151), cyan,rgb(70, 70, 151));
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -96,9 +96,9 @@ nav ul li a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    width: 100%;
-    max-width: 1200px;
+    width: 90%;
     padding: 1rem;
+    margin: 5% ;
 }
 
 .card {
@@ -254,6 +254,12 @@ body, nav, footer {
     margin-bottom: 1.5rem;
 }
 
+.contact-info-h {
+    font-size: 1rem;
+    color: darkcyan;
+    margin-bottom: 1.5rem;
+}
+
 .contact-details {
     list-style-type: none;
     padding: 0;
@@ -315,6 +321,14 @@ body, nav, footer {
     border: 1px solid #ddd;
     width: 100%;
     box-sizing: border-box;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width :auto ;
+}
+
+.form-group input[type="radio"] {
+    width: auto ;
 }
 
 .form-group input[type="file"] {
@@ -706,18 +720,30 @@ body, nav, footer {
     font-family: 'Georgia', serif; 
 }
 
+.user-signup1-p {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-family: 'Georgia', serif; 
+}
+
 .user-signup2 label {
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
 }
 
+.user-signup2 input[type="radio"] {
+    width: auto ;
+}
+
 .user-signup2 input {
-    width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     font-size: 1rem;
     border-radius: 4px;
     border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* .user-signup2-g {
