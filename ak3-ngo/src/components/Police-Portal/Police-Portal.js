@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./User-Portal.css";
-import "../Register-Plea";
+import "./Police-Portal.css";
 import RegisterPlea from "../Register-Plea";
 import TasksContainer from "../Task-Container";
 
-const UserPortal = ()=>{
+const PolicePortal = ()=>{
   
   const [MyQueries, setMyQueries] = useState([
     {
@@ -284,4 +283,4 @@ const UserPortal = ()=>{
   );
 }
 
-export default UserPortal;
+export default PolicePortal;

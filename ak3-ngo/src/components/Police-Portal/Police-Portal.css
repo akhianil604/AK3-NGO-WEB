@@ -7,18 +7,16 @@
     box-sizing: border-box;
     font-family: 'Comic Sans MS';
 }
-/* 
+
 body{
     display: flex;
     background: #dde8f6;
     overflow-y: auto;
     height: 100vh;
-} */
+}
 
 .container {
     display: flex;
-    background: #dde8f6;
-    overflow-y: auto;
     flex-direction: row;
     align-items: flex-start;
     height: 100vh;
@@ -40,7 +38,7 @@ nav {
 .page-active{
     padding: 20px;
     background: #f5f5f5;
-    /* height: calc(100vh - 20px);  */
+    height: calc(100vh - 20px); 
     overflow-y: auto;
 }
 
@@ -50,7 +48,7 @@ nav {
 .logo{
     text-align: center;
     display: flex;
-    margin: 1rem 0.5rem 1rem;
+    margin: 1rem 0.5rem 1rem rem;
 }
 
 .logo img{
@@ -99,90 +97,6 @@ a:hover{
     bottom: 0.5rem;
 }
 
-#RegisterPlea {
-    width: 45rem;
-    margin-top: 2rem;
-    margin-left: 10rem;
-    background-color: transparent;
-    padding: 1rem;
-}
-
-.pleaForm {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.1);
-    background: #fff;
-    border-radius: 5px;
-    font-size: 1rem;
-    width: 100%; 
-    padding: 1.5rem;
-    margin: 0 auto;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-}
-
-.radio-group {
-    display: flex;
-    gap: 5rem; 
-    margin-top: 0.5rem;
-}
-
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-}
-
-.radio-group input[type="radio"] {
-    width:auto;
-}
-
-.form-group label {
-    margin-bottom: 0.5rem;
-    color: #353c4e;
-    font-size: 1.1rem;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 50rem; 
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-textarea {
-    resize: vertical;
-    height: 6rem;
-}
-
-button {
-    background-color: #01a9ac;
-    color: white;
-    margin-top: 1rem;
-    padding: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 50%; 
-    max-width: 150px;
-    align-self: center;
-    margin-left: -20rem;
-}
-
-button:hover {
-    background-color: #019d9b;
-}
-
-
 #Home{
     position: static;
     padding: 20px;
@@ -205,7 +119,7 @@ button:hover {
     justify-content: flex-start;
 }
 
-.main-skills .task-block-card {
+.main-skills .card {
     width: 30%;
     min-width: 200px;
     height: auto;
@@ -222,7 +136,7 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.main-skills .task-block-card button {
+.main-skills .card button {
     background: orangered;
     color: #fff;
     padding: 10px 20px;
@@ -232,7 +146,7 @@ button:hover {
     width: 6rem;
 }
 
-.main-skills .task-block-card button:hover {
+.main-skills .card button:hover {
     background: rgba(223, 70, 15, 0.856);
 }
 
@@ -245,52 +159,42 @@ button:hover {
 .home-use{
     position: absolute;
     padding: 20px; 
-    margin-top: 15px; 
-}
-.home-use h1{
-    font-size: 4rem;
-    /* background-color: white; */
-    border-radius: 20px;
-    margin-left: auto;  
-    margin-right: auto;
-}
-#Pending{
-    width: 31rem;
+    margin-top: 20px; 
 }
 
-.home-use #MyQueries{
-    /* margin-top: 4rem; */
-    width: 23rem;
+.home-use h1{
+    font-size: 4rem;
+    margin-left: 15rem;
 }
+
 .home-use .card{
     width: 20rem;
 }
 
-.main-skills .task-block-card .accept-btn, .accept-btn{
+.main-skills .card .accept-button, .accept-button{
     background-color: green;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.main-skills .task-block-card .accept-btn:hover , .accept-btn:hover{
+.main-skills .card .accept-button:hover , .accept-button:hover{
     background: rgba(0, 128, 0, 0.546);
 }
-.main-skills .task-block-card .reject-btn, .reject-btn{
+.main-skills .card .reject-button, .reject-button{
     background-color: red;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.main-skills .task-block-card .reject-btn:hover , .reject-btn:hover{
+.main-skills .card .reject-button:hover , .reject-button:hover{
     background: rgba(255, 0, 0, 0.546);
 }
 
-                    /* 'How to Use' Page */
 #HowToUse {
     position: static;
-    padding: 2rem;
+    padding: 20px;
     width: 100%;
     background: transparent;
     height: calc(100vh - 40px); 
@@ -304,10 +208,10 @@ button:hover {
     height: 5rem;
     display: flex;
     text-align: center;
-    border-radius: 5rem;
+
 }
-#Accept .accept-btn{
-    margin-top: 0rem;
+#Accept .accept-button{
+    margin-top: 1rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
@@ -327,11 +231,10 @@ button:hover {
     height: 5rem;
     display: flex;
     text-align: center;
-    border-radius: 5rem;
 
 }
-#Reject .reject-btn{
-    margin-top: 0rem;
+#Reject .reject-button{
+    margin-top: 1rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
@@ -351,10 +254,9 @@ button:hover {
     height: 5rem;
     display: flex;
     text-align: center;
-    border-radius: 5rem;
 }
 #View-More .view-more-btn{
-    margin-top: 0rem;
+    margin-top: 1rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
@@ -365,32 +267,24 @@ button:hover {
     justify-content: center;
     margin-top: 1rem;
     margin-left: 10rem;
-} 
-
-                        /* My Profile */
-#Profile{
-    margin-left: 17.5rem;
-    width: 40rem;
-    background-color: transparent;
 }
 
+                        /* My Profile */
 .wrapper{
     position: absolute;
-    margin-top: 20rem;
-    left: 50rem;
+    top: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
     height: 40rem;
-    width: 50rem;
+    width: 45rem;
     display: flex;
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
 }
 
 .wrapper .left{
     width: 35%;
-    height: 40rem;
     background: linear-gradient(to right, #01a9ac, #01dbdf);
-    margin-top: 0rem;
-    margin-left: -1.9rem;
-    padding: 12rem 2rem;
+    padding: 12rem 25px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     text-align: center;
@@ -405,9 +299,13 @@ button:hover {
 }
 
 .wrapper .left h4{
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    margin-left: -0.5rem;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.wrapper .left p{
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .wrapper .right{
@@ -415,21 +313,21 @@ button:hover {
     background: #fff;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    padding: 3rem 2.5rem;
+    padding: 30px 25px;
 }
 
 .wrapper .right .info, .wrapper .right .projects{
-    margin-bottom: 2.5rem;
+    margin-bottom: 25px;
 }
 
 .wrapper .right .info h3, .wrapper .right .projects h3{
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
     border-bottom: 1px solid #e0e0e0;
     color: #353c4e;
     text-transform: uppercase;
-    letter-spacing: 0.5rem;
+    letter-spacing: 5px;
 }
 
 .wrapper .right .info_data .data, .wrapper .right .projects_data .data{
@@ -437,7 +335,7 @@ button:hover {
 }
 .wrapper .right .info_data .data h4, .wrapper .right .projects_data .data h4{
     color: #353c4e;
-    margin-bottom: 0.5rem;
+    margin-bottom: 5px;
     font-size: 1.25rem;
 }
 .wrapper .right .info_data .data p, .wrapper .right .projects_data p{
@@ -446,7 +344,7 @@ button:hover {
     color: #919aa3;
 }
 
-                        /* Modal Box to view Query-Details*/
+/* Modal Box to view Query-Details*/
 .modal {
     display: none;
     position: fixed;
@@ -492,65 +390,55 @@ button:hover {
 }
 
                         /* Settings Page */
-#Settings{
-    width: 40rem;
-    margin-left: 25rem;
-    background-color: transparent;
-}
-
+/* Settings Page */
 .wrapper-settings {
     position: absolute;
-    margin-top: 30rem;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 60rem;
-    margin-left: 5rem;
-    width: 40rem;
+    height: auto;
+    width: 45rem;
     display: flex;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     background: #fff;
     border-radius: 5px;
-    padding: 1rem;
-    font-size: 4rem;
+    padding: 30px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.5rem;
-    margin-left: 2rem;
+    margin-bottom: 25px;
 }
 
 .form-group label {
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
     color: #353c4e;
     font-size: 1.25rem;
 }
 
 .form-group input,
 .form-group textarea {
-    width: 25rem;
-    padding: 1rem;
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
 }
 
-.form-group select{
-    width: 25rem;
+.form-group textarea{
+    width: 40rem;
+    height: 6rem;
 }
-
 textarea {
     resize: none;
-    height: 8rem;
+    height: 80px;
 }
 
 button {
     background-color: #01a9ac;
     color: white;
-    margin-top: 1rem;
-    margin-left: 0rem;
-    padding: 1rem 1rem;
+    padding: 12px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -559,17 +447,4 @@ button {
 
 button:hover {
     background-color: #019d9b;
-}
-
-.main-skills .task-block-card .view-more-btn {
-    background: blue;
-    color: white;
-    padding: 15px;
-    width: 200px;
-    border-radius: 10px;
-    cursor: pointer;
-} 
-
-.main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
-    background: #019d9b;
 }
