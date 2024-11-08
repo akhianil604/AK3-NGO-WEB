@@ -10,7 +10,7 @@ import UserLogin from './components/User-Login/user-login';
 function App(){
   return (
     <div>
-        <UserPortal/>
+        <UserLogin/>
     </div>
   );
 }
