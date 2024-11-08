@@ -15,14 +15,14 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
     title: '',
     category: 'Harassment',
     description: '',
-    file: null,
+    // file: null,
   });
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'file' ? files[0] : value,
+      [name]: value,
     });
   };
 
@@ -54,7 +54,7 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
   };
 
   return (
-    <section id="RegisterPlea">
+    <div style={{position: 'absolute', width: '45rem'}}>
       <form className="pleaForm" onSubmit={handlePleaSubmit}>
         <div className="form-group">
           <label htmlFor="victimName">Victim's Name:</label>
@@ -265,7 +265,7 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
           />
         </div>
 
-        <div className="form-group">
+        {/*<div className="form-group">
           <label htmlFor="file">Choose File:</label>
           <input
             type="file"
@@ -273,11 +273,11 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
             name="file"
             onChange={handleChange}
           />
-        </div>
+        </div>*/}
 
         <button type="submit">Submit</button>
       </form>
-    </section>
+    </div>
   );
 };
 

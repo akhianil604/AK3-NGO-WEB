@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import './Police-Portal.css'
+import './NGO-Portal.css'
 import "../Register-Plea";
 import TasksContainer from "../Task-Container";
 
-const PolicePortal = ()=>{
+const NGOPortal = ()=>{
   
   const [MyQueries, setMyQueries] = useState([
     {
@@ -98,12 +98,12 @@ const PolicePortal = ()=>{
 
 
   return (
-    <div className="policePortalContainer">
+    <div className="NGOPortalContainer">
       <nav>
         <ul>
           <li>
             <a href="#" className="logo">
-              <span className="nav-item">POL54132</span>
+              <span className="nav-item">NGO54132</span>
             </a>
           </li>
           <li>
@@ -193,7 +193,7 @@ const PolicePortal = ()=>{
       <section className={activeSection === 'Profile' ? 'page-active' : 'page-hidden'} id="Profile">
         <div className="wrapper">
           <div className="left">
-            <i class="fa fa-user-secret"></i>
+            <i class="fa fa-users" aria-hidden="true" ></i>
             <h4>Divya</h4>
             <p>USR54132</p>
           </div>
@@ -316,4 +316,4 @@ const PolicePortal = ()=>{
   );
 }
 
-export default PolicePortal;
+export default NGOPortal;

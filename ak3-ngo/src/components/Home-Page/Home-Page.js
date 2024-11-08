@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Home-Page.css";
+import "../login.css";
 const HomePage = ()=>{
 
     const [activeSection, setActiveSection] = useState('home');
@@ -244,7 +244,7 @@ const HomePage = ()=>{
                 <h2>Register Your Plea</h2>
                 <form class="plea-form">
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label htmlFor="name">Name:</label>
                         <input type="text" id="name" name="name" placeholder="Name" required
                             value={pleaData.name}
                             onChange={handlePleaChange}/>
@@ -256,19 +256,19 @@ const HomePage = ()=>{
                                 <input type="radio" id="male" name="gender" value="Male"
                                     checked={pleaData.gender === 'Male'}
                                     onChange={handlePleaChange}/>
-                                <label for="male">Male</label>
+                                <label htmlFor="male">Male</label>
                             </div>
                             <div>
                                 <input type="radio" id="female" name="gender" value="Female"
                                     checked={pleaData.gender === 'Female'}
                                     onChange={handlePleaChange}/>
-                                <label for="female">Female</label>
+                                <label htmlFor="female">Female</label>
                             </div>
                             <div>
                                 <input type="radio" id="others" name="gender" value="Others"
                                     checked={pleaData.gender === 'Others'}
                                     onChange={handlePleaChange}/>
-                                <label for="others">Others</label>
+                                <label htmlFor="others">Others</label>
                             </div>
                         </div>
 
@@ -516,7 +516,7 @@ const HomePage = ()=>{
                     </div>
 
                     {/* Need to handle files */}
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="files">Submit any files:</label>
                         <input 
                             type="file" 
@@ -524,7 +524,7 @@ const HomePage = ()=>{
                             name="files" 
                             multiple
                         />
-                    </div>
+                    </div> */}
 
                     <div className="form-group">
                         <button type="submit" className="submit-btn" onClick={handlePleaSubmit}>Submit</button>
@@ -577,7 +577,7 @@ const HomePage = ()=>{
                     </div> --> */}
                     
                     <div class="user-signup2">
-                        <label for="name">Name:</label>
+                        <label htmlFor="name">Name:</label>
                         <input type="text" id="name" name="name" placeholder="Name" required
                             value={userData.name}
                             onChange={handleUserDataChange}/>
@@ -589,44 +589,44 @@ const HomePage = ()=>{
                                 <input type="radio" id="male" name="gender" value="Male"
                                     checked={userData.gender === "Male"}
                                     onChange={handleUserDataChange}/>
-                                <label for="male">Male</label>
+                                <label htmlFor="male">Male</label>
                             </div>
                             <div>
                                 <input type="radio" id="female" name="gender" value="Female"
                                     checked={userData.gender === "Female"}
                                     onChange={handleUserDataChange}/>
-                                <label for="female">Female</label>
+                                <label htmlFor="female">Female</label>
                             </div>
                             <div>
                                 <input type="radio" id="others" name="gender" value="Others"
                                     checked={userData.gender === "Others"}
                                     onChange={handleUserDataChange}/>
-                                <label for="others">Others</label>
+                                <label htmlFor="others">Others</label>
                             </div>
                         </div>
 
                     <div class="user-signup2">
-                        <label for="DOB">Date of Birth:</label>
+                        <label htmlFor="DOB">Date of Birth:</label>
                         <input type="date" id="DOB" name="DOB" required
                             value={userData.DOB}
                             onChange={handleUserDataChange}/>
                     </div>
 
                     <div class="user-signup2">
-                        <label for="email">Email:</label>
+                        <label htmlFor="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="abc@gmail.com" required
                             value={userData.email}
                             onChange={handleUserDataChange}/>
                     </div>
 
                     <div class="user-signup2">
-                        <label for="phone">Phone Number:</label>
+                        <label htmlFor="phone">Phone Number:</label>
                         <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="10 digits" required
                             value={userData.phone}
                             onChange={handleUserDataChange}/>
                     </div>
 
-                    <label for="education">Educational Qualifications:</label>
+                    <label htmlFor="education">Educational Qualifications:</label>
                     <div class="user-signup2">
                         <select id="education" name="education"
                             value={userData.education}
@@ -648,24 +648,24 @@ const HomePage = ()=>{
                                 <input type="radio" id="minor" name="Marital Status" value="Minor"
                                     checked={userData.maritalStatus === 'Minor'}
                                     onChange={handleUserDataChange}/>
-                                <label for="minor">Minor</label>
+                                <label htmlFor="minor">Minor</label>
                             </div>
                             <div>
                                 <input type="radio" id="unmarried" name="Marital Status" value="Unmarried"
                                     checked={userData.maritalStatus === 'Unmarried'}
                                     onChange={handleUserDataChange}/>
-                                <label for="unmarried">Unmarried</label>
+                                <label htmlFor="unmarried">Unmarried</label>
                             </div>
                             <div>
                                 <input type="radio" id="married" name="Marital Status" value="Married"
                                     checked={userData.maritalStatus === 'Married'}
                                     onChange={handleUserDataChange}/>
-                                <label for="married">Married</label>
+                                <label htmlFor="married">Married</label>
                             </div>
                         </div>
 
                     <div class="user-signup2">
-                        <label for="address">Address:</label>
+                        <label htmlFor="address">Address:</label>
                         <textarea id="address" name="address" placeholder="Address" rows="5" cols="30" required
                             value={userData.address}
                             onChange={handleUserDataChange}>
@@ -673,21 +673,21 @@ const HomePage = ()=>{
                     </div>
 
                     <div class="user-signup2">
-                        <label for="city">City:</label>
+                        <label htmlFor="city">City:</label>
                         <input type="text" id="city" name="city" placeholder="City" required
                             value={userData.city}
                             onChange={handleUserDataChange}/>
                     </div>
 
                     <div class="user-signup2">
-                        <label for="state">State:</label>
+                        <label htmlFor="state">State:</label>
                         <input type="text" id="state" name="state" placeholder="State" required
                             value={userData.state}
                             onChange={handleUserDataChange}/>
                     </div>
 
                     <div class="user-signup2">
-                        <label for="password">Password:</label>
+                        <label htmlFor="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter your password" required
                             value={userData.password}
                             onChange={handleUserDataChange}/>

@@ -1,9 +1,13 @@
 import React from 'react';
-import './project.css';
+import '../login.css';
 
-function SisterPortal() {
+function SisterLogin() {
     return (
-        <div className="sister-background">
+        <div className="sister-background" 
+            style={{
+                background: "url('Sister_image.png') no-repeat center center fixed",
+                backgroundSize: "cover"
+            }}>
             <section id="sister-portal-header">
                 <div className="header">
                     <h1>Welcome to the Sister Login</h1>
@@ -32,4 +36,4 @@ function SisterPortal() {
     );
 }
 
-export default SisterPortal;
+export default SisterLogin;

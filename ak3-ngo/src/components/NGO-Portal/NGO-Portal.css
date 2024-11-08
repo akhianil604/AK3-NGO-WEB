@@ -1,4 +1,4 @@
-.policePortalContainer *{
+*{
     margin: 0;
     padding: 0;
     outline: none;
@@ -15,19 +15,18 @@ body{
     height: 100vh;
 } */
 
-.policePortalContainer {
+.NGOPortalContainer {
     display: flex;
     background: #dde8f6;
     overflow-y: auto;
     flex-direction: row;
     align-items: flex-start;
-    /* height: 100%;
-    width: 100%; */
+    /* min-height: 100vh; */
     position: sticky;
     top: 0;
 }
 
-.policePortalContainer nav {
+.NGOPortalContainer nav {
     width: 280px;
     background: #fff;
     height: 100vh;
@@ -36,42 +35,42 @@ body{
     top: 0;
 }
 
-.policePortalContainer .page-hidden {
+.NGOPortalContainer .page-hidden {
     padding: 20px;
     background: #f5f5f5;
     display: none;
 }
 
-.policePortalContainer .page-active{
+.NGOPortalContainer .page-active{
     padding: 20px;
     background: #f5f5f5;
     /* height: calc(100vh - 20px);  */
     overflow-y: auto;
 }
 
-.policePortalContainer .page {
+.NGOPortalContainer .page {
     margin-top: 100px;
 }
-.policePortalContainer .logo{
+.NGOPortalContainer .logo{
     text-align: center;
     display: flex;
     margin: 1rem 0.5rem 1rem;
 }
 
-.policePortalContainer .logo img{
+.NGOPortalContainer .logo img{
     width: 45px;
     height: 45px;
     border-radius: 50%;
 }
 
-.policePortalContainer .logo span{
+.NGOPortalContainer .logo span{
     font-weight: bold;
     font-size: 2.5rem;
     text-transform: uppercase;
     text-align: center;
 }
 
-.policePortalContainer a{
+.NGOPortalContainer a{
     position: relative;
     color: rgb(85, 83, 83);
     font-size: 14px;
@@ -80,7 +79,7 @@ body{
     padding: 10px;
 }
 
-.policePortalContainer nav .fa{
+.NGOPortalContainer nav .fa{
     position: relative;
     width: 70px;
     height: 40px;
@@ -89,22 +88,22 @@ body{
     text-align: center;
 }
 
-.policePortalContainer .nav-item{
+.NGOPortalContainer .nav-item{
     position: relative;
     top: 12px;
     margin-left: 10px;
 }
 
-.policePortalContainer a:hover{
+.NGOPortalContainer a:hover{
     background: #eee;
 }
 
-.policePortalContainer .logout{
+.NGOPortalContainer .logout{
     position: absolute;
     bottom: 0.5rem;
 }
 
-.policePortalContainer #RegisterPlea {
+.NGOPortalContainer #RegisterPlea {
     width: 45rem;
     margin-top: 2rem;
     margin-left: 10rem;
@@ -112,7 +111,7 @@ body{
     padding: 1rem;
 }
 
-.policePortalContainer .pleaForm {
+.NGOPortalContainer .pleaForm {
     display: flex;
     flex-direction: column;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.1);
@@ -124,30 +123,30 @@ body{
     margin: 0 auto;
 }
 
-.policePortalContainer .form-group {
+.NGOPortalContainer .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
     padding-left: 1rem;
 }
 
-.policePortalContainer .radio-group {
+.NGOPortalContainer .radio-group {
     display: flex;
     gap: 5rem; 
     margin-top: 0.5rem;
 }
 
-.policePortalContainer .radio-group label {
+.NGOPortalContainer .radio-group label {
     display: flex;
     align-items: center;
     gap: 0.2rem;
 }
 
-.policePortalContainer .radio-group input[type="radio"] {
+.NGOPortalContainer .radio-group input[type="radio"] {
     width:auto;
 }
 
-.policePortalContainer .form-group label {
+.NGOPortalContainer .form-group label {
     margin-bottom: 0.5rem;
     color: #353c4e;
     font-size: 1.1rem;
@@ -155,7 +154,7 @@ body{
 
 .form-group input,
 .form-group textarea,
-.policePortalContainer .form-group select {
+.NGOPortalContainer .form-group select {
     width: 50rem; 
     padding: 0.8rem;
     border: 1px solid #ccc;
@@ -163,12 +162,12 @@ body{
     font-size: 1rem;
 }
 
-.policePortalContainer textarea {
+.NGOPortalContainer textarea {
     resize: vertical;
     height: 6rem;
 }
 
-.policePortalContainer button {
+.NGOPortalContainer button {
     background-color: #01a9ac;
     color: white;
     margin-top: 1rem;
@@ -183,26 +182,26 @@ body{
     margin-left: -20rem;
 }
 
-.policePortalContainer button:hover {
+.NGOPortalContainer button:hover {
     background-color: #019d9b;
 }
 
 
-.policePortalContainer #Home{
+.NGOPortalContainer #Home{
     position: static;
     padding: 20px;
     width: 100%;
     background: transparent;
 }
 
-.policePortalContainer #Assigned{
+.NGOPortalContainer #Assigned{
     position: static;
     padding: 20px;
     width: 100%;
     background: transparent;
 }
 
-.policePortalContainer .main-skills {
+.NGOPortalContainer .main-skills {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -210,7 +209,7 @@ body{
     justify-content: flex-start;
 }
 
-.policePortalContainer .main-skills .task-block-card {
+.NGOPortalContainer .main-skills .task-block-card {
     width: 30%;
     min-width: 200px;
     height: auto;
@@ -223,11 +222,11 @@ body{
     word-wrap: break-word;
 }
 
-.policePortalContainer .task-title, .policePortalContainer .task-category, .policePortalContainer .task-description {
+.NGOPortalContainer .task-title, .NGOPortalContainer .task-category, .NGOPortalContainer .task-description {
     margin-bottom: 10px;
 }
 
-.policePortalContainer .main-skills .task-block-card button {
+.NGOPortalContainer .main-skills .task-block-card button {
     background: orangered;
     color: #fff;
     padding: 10px 20px;
@@ -237,66 +236,66 @@ body{
     width: 6rem;
 }
 
-.policePortalContainer .main-skills .task-block-card button:hover {
+.NGOPortalContainer .main-skills .task-block-card button:hover {
     background: rgba(223, 70, 15, 0.856);
 }
 
-.policePortalContainer .view-more-btn{
+.NGOPortalContainer .view-more-btn{
     margin-top: 5rem;
     background-color: blue;
     color: white;
 }
 
-.policePortalContainer .home-use{
+.NGOPortalContainer .home-use{
     position: absolute;
     padding: 20px; 
     margin-top: 15px; 
 }
-.policePortalContainer .home-use h1{
+.NGOPortalContainer .home-use h1{
     font-size: 4rem;
     /* background-color: white; */
     border-radius: 20px;
     margin-left: auto;  
     margin-right: auto;
 }
-.policePortalContainer #Pending{
+.NGOPortalContainer #Pending{
     position: static;
     padding: 20px;
     width: 100%;
     background: transparent;
 } 
 
-.policePortalContainer .home-use #MyQueries{
+.NGOPortalContainer .home-use #MyQueries{
     /* margin-top: 4rem; */
     width: 23rem;
 }
-.policePortalContainer .home-use .card{
+.NGOPortalContainer .home-use .card{
     width: 20rem;
 }
 
-.policePortalContainer .main-skills .task-block-card .accept-btn, .policePortalContainer .accept-btn{
+.NGOPortalContainer .main-skills .task-block-card .accept-btn, .NGOPortalContainer .accept-btn{
     background-color: green;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.policePortalContainer .main-skills .task-block-card .accept-btn:hover , .policePortalContainer .accept-btn:hover{
+.NGOPortalContainer .main-skills .task-block-card .accept-btn:hover , .NGOPortalContainer .accept-btn:hover{
     background: rgba(0, 128, 0, 0.546);
 }
-.policePortalContainer .main-skills .task-block-card .reject-btn, .policePortalContainer .reject-btn{
+.NGOPortalContainer .main-skills .task-block-card .reject-btn, .NGOPortalContainer .reject-btn{
     background-color: red;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.policePortalContainer .main-skills .task-block-card .reject-btn:hover , .policePortalContainer .reject-btn:hover{
+.NGOPortalContainer .main-skills .task-block-card .reject-btn:hover , .NGOPortalContainer .reject-btn:hover{
     background: rgba(255, 0, 0, 0.546);
 }
 
                     /* 'How to Use' Page */
-.policePortalContainer #HowToUse {
+.NGOPortalContainer #HowToUse {
     position: static;
     padding: 2rem;
     width: 100%;
@@ -305,7 +304,7 @@ body{
     overflow-y: auto; 
 }
 
-.policePortalContainer #Accept{
+.NGOPortalContainer #Accept{
     margin-top: 2rem;
     width: 65rem;
     background-color: peachpuff;
@@ -314,13 +313,13 @@ body{
     text-align: center;
     border-radius: 5rem;
 }
-.policePortalContainer #Accept .accept-btn{
+.NGOPortalContainer #Accept .accept-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
 }
-.policePortalContainer #Accept p{
+.NGOPortalContainer #Accept p{
     position: absolute;
     font-size: 2rem;
     justify-content: center;
@@ -328,7 +327,7 @@ body{
     margin-left: 10rem;
 }
 
-.policePortalContainer #Reject{
+.NGOPortalContainer #Reject{
     margin-top: 2rem;
     width: 65rem;
     background-color: peachpuff;
@@ -338,13 +337,13 @@ body{
     border-radius: 5rem;
 
 }
-.policePortalContainer #Reject .reject-btn{
+.NGOPortalContainer #Reject .reject-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
 }
-.policePortalContainer #Reject p{
+.NGOPortalContainer #Reject p{
     position: absolute;
     font-size: 2rem;
     justify-content: center;
@@ -352,7 +351,7 @@ body{
     margin-left: 10rem;
 }
 
-.policePortalContainer #View-More{
+.NGOPortalContainer #View-More{
     margin-top: 2rem;
     width: 65rem;
     background-color: peachpuff;
@@ -361,13 +360,13 @@ body{
     text-align: center;
     border-radius: 5rem;
 }
-.policePortalContainer #View-More .view-more-btn{
+.NGOPortalContainer #View-More .view-more-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
 }
-.policePortalContainer #View-More p{
+.NGOPortalContainer #View-More p{
     position: absolute;
     font-size: 2rem;
     justify-content: center;
@@ -376,13 +375,13 @@ body{
 } 
 
                         /* My Profile */
-.policePortalContainer #Profile{
+.NGOPortalContainer #Profile{
     margin-left: 17.5rem;
     width: 40rem;
     background-color: transparent;
 }
 
-.policePortalContainer .wrapper{
+.NGOPortalContainer .wrapper{
     position: absolute;
     margin-top: 20rem;
     left: 50rem;
@@ -392,7 +391,7 @@ body{
     display: flex;
 }
 
-.policePortalContainer .wrapper .left{
+.NGOPortalContainer .wrapper .left{
     width: 35%;
     height: 40rem;
     background: linear-gradient(to right, #01a9ac, #01dbdf);
@@ -405,20 +404,20 @@ body{
     color: #fff;
 }
 
-.policePortalContainer .wrapper .left i{
+.NGOPortalContainer .wrapper .left i{
     font-size: 10rem;
     margin-top: -4rem;
     margin-bottom: 2rem;
     border-radius: 5px;
 }
 
-.policePortalContainer .wrapper .left h4{
+.NGOPortalContainer .wrapper .left h4{
     font-size: 2.5rem;
     margin-bottom: 1rem;
     margin-left: -0.5rem;
 }
 
-.policePortalContainer .wrapper .right{
+.NGOPortalContainer .wrapper .right{
     width: 65%;
     background: #fff;
     border-top-right-radius: 5px;
@@ -426,11 +425,11 @@ body{
     padding: 3rem 2.5rem;
 }
 
-.policePortalContainer .wrapper .right .info, .policePortalContainer .wrapper .right .projects{
+.NGOPortalContainer .wrapper .right .info, .NGOPortalContainer .wrapper .right .projects{
     margin-bottom: 2.5rem;
 }
 
-.policePortalContainer .wrapper .right .info h3, .policePortalContainer .wrapper .right .projects h3{
+.NGOPortalContainer .wrapper .right .info h3, .NGOPortalContainer .wrapper .right .projects h3{
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
@@ -440,22 +439,22 @@ body{
     letter-spacing: 0.5rem;
 }
 
-.policePortalContainer .wrapper .right .info_data .data, .policePortalContainer .wrapper .right .projects_data .data{
+.NGOPortalContainer .wrapper .right .info_data .data, .NGOPortalContainer .wrapper .right .projects_data .data{
     width: 80%;
 }
-.policePortalContainer .wrapper .right .info_data .data h4, .policePortalContainer .wrapper .right .projects_data .data h4{
+.NGOPortalContainer .wrapper .right .info_data .data h4, .NGOPortalContainer .wrapper .right .projects_data .data h4{
     color: #353c4e;
     margin-bottom: 0.5rem;
     font-size: 1.25rem;
 }
-.policePortalContainer .wrapper .right .info_data .data p, .policePortalContainer .wrapper .right .projects_data p{
+.NGOPortalContainer .wrapper .right .info_data .data p, .NGOPortalContainer .wrapper .right .projects_data p{
     font-size: 1rem;
     margin-bottom: 10px;
     color: #919aa3;
 }
 
                         /* Modal Box to view Query-Details*/
-.policePortalContainer .modal {
+.NGOPortalContainer .modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -467,7 +466,7 @@ body{
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.policePortalContainer .modal-content {
+.NGOPortalContainer .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -477,7 +476,7 @@ body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.policePortalContainer .close{
+.NGOPortalContainer .close{
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -485,28 +484,28 @@ body{
 }
 
 userPortalContainer .close:hover,
-.policePortalContainer .close:focus{
+.NGOPortalContainer .close:focus{
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.policePortalContainer .modal h2{
+.NGOPortalContainer .modal h2{
     margin-bottom: 10px;
 }
 
-.policePortalContainer .modal p{
+.NGOPortalContainer .modal p{
     margin: 5px 0;
 }
 
                         /* Settings Page */
-.policePortalContainer #Settings{
+.NGOPortalContainer #Settings{
     width: 40rem;
     margin-left: 25rem;
     background-color: transparent;
 }
 
-.policePortalContainer .wrapper-settings {
+.NGOPortalContainer .wrapper-settings {
     position: absolute;
     margin-top: 30rem;
     left: 50%;
@@ -522,21 +521,21 @@ userPortalContainer .close:hover,
     font-size: 4rem;
 }
 
-.policePortalContainer .form-group {
+.NGOPortalContainer .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
     margin-left: 2rem;
 }
 
-.policePortalContainer .form-group label {
+.NGOPortalContainer .form-group label {
     margin-bottom: 0.5rem;
     color: #353c4e;
     font-size: 1.25rem;
 }
 
-.policePortalContainer .form-group input,
-.policePortalContainer .form-group textarea {
+.NGOPortalContainer .form-group input,
+.NGOPortalContainer .form-group textarea {
     width: 25rem;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -544,16 +543,16 @@ userPortalContainer .close:hover,
     font-size: 1rem;
 }
 
-.policePortalContainer .form-group select{
+.NGOPortalContainer .form-group select{
     width: 25rem;
 }
 
-.policePortalContainer textarea {
+.NGOPortalContainer textarea {
     resize: none;
     height: 8rem;
 }
 
-.policePortalContainer button {
+.NGOPortalContainer button {
     background-color: #01a9ac;
     color: white;
     margin-top: 1rem;
@@ -565,11 +564,11 @@ userPortalContainer .close:hover,
     font-size: 1rem;
 }
 
-.policePortalContainer button:hover {
+.NGOPortalContainer button:hover {
     background-color: #019d9b;
 }
 
-.policePortalContainer .main-skills .task-block-card .view-more-btn {
+.NGOPortalContainer .main-skills .task-block-card .view-more-btn {
     background: blue;
     color: white;
     padding: 15px;
@@ -578,6 +577,6 @@ userPortalContainer .close:hover,
     cursor: pointer;
 } 
 
-.policePortalContainer .main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
+.NGOPortalContainer .main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
     background: #019d9b;
 }

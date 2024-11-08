@@ -1,11 +1,11 @@
-*{
+.userPortalContainer *{
     margin: 0;
     padding: 0;
     outline: none;
     border: none;
     text-decoration: none;
     box-sizing: border-box;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS', 'FontAwesome';
 }
 /* 
 body{
@@ -15,58 +15,62 @@ body{
     height: 100vh;
 } */
 
-.container {
+.userPortalContainer {
     display: flex;
     background: #dde8f6;
     overflow-y: auto;
     flex-direction: row;
     align-items: flex-start;
-    height: 100vh;
+    /* height: 100vh; */
+    position: sticky;
+    top: 0;
 }
 
-nav {
+.userPortalContainer nav {
     width: 280px;
     background: #fff;
     height: 100vh;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
 }
 
-.page-hidden {
+.userPortalContainer .page-hidden {
     padding: 20px;
     background: #f5f5f5;
     display: none;
 }
 
-.page-active{
+.userPortalContainer .page-active{
     padding: 20px;
     background: #f5f5f5;
     /* height: calc(100vh - 20px);  */
     overflow-y: auto;
 }
 
-.page {
+.userPortalContainer .page {
     margin-top: 100px;
 }
-.logo{
+.userPortalContainer .logo{
     text-align: center;
     display: flex;
     margin: 1rem 0.5rem 1rem;
 }
 
-.logo img{
+.userPortalContainer .logo img{
     width: 45px;
     height: 45px;
     border-radius: 50%;
 }
 
-.logo span{
+.userPortalContainer .logo span{
     font-weight: bold;
     font-size: 2.5rem;
     text-transform: uppercase;
     text-align: center;
 }
 
-a{
+.userPortalContainer a{
     position: relative;
     color: rgb(85, 83, 83);
     font-size: 14px;
@@ -75,7 +79,8 @@ a{
     padding: 10px;
 }
 
-nav .fa{
+.userPortalContainer nav .fa{
+    /* font-family: 'FontAwesome'; */
     position: relative;
     width: 70px;
     height: 40px;
@@ -84,22 +89,23 @@ nav .fa{
     text-align: center;
 }
 
-.nav-item{
+.userPortalContainer .nav-item{
     position: relative;
     top: 12px;
     margin-left: 10px;
 }
 
-a:hover{
+.userPortalContainer a:hover{
     background: #eee;
 }
 
-.logout{
+.userPortalContainer .logout{
     position: absolute;
     bottom: 0.5rem;
 }
 
-#RegisterPlea {
+/* if changing 45 rem, change in registerplea's div */
+.userPortalContainer #RegisterPlea {
     width: 45rem;
     margin-top: 2rem;
     margin-left: 10rem;
@@ -107,7 +113,8 @@ a:hover{
     padding: 1rem;
 }
 
-.pleaForm {
+.userPortalContainer .pleaForm {
+    position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.1);
@@ -119,30 +126,30 @@ a:hover{
     margin: 0 auto;
 }
 
-.form-group {
+.userPortalContainer .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
     padding-left: 1rem;
 }
 
-.radio-group {
+.userPortalContainer .radio-group {
     display: flex;
     gap: 5rem; 
     margin-top: 0.5rem;
 }
 
-.radio-group label {
+.userPortalContainer .radio-group label {
     display: flex;
     align-items: center;
     gap: 0.2rem;
 }
 
-.radio-group input[type="radio"] {
+.userPortalContainer .radio-group input[type="radio"] {
     width:auto;
 }
 
-.form-group label {
+.userPortalContainer .form-group label {
     margin-bottom: 0.5rem;
     color: #353c4e;
     font-size: 1.1rem;
@@ -150,7 +157,7 @@ a:hover{
 
 .form-group input,
 .form-group textarea,
-.form-group select {
+.userPortalContainer .form-group select {
     width: 50rem; 
     padding: 0.8rem;
     border: 1px solid #ccc;
@@ -158,12 +165,12 @@ a:hover{
     font-size: 1rem;
 }
 
-textarea {
+.userPortalContainer textarea {
     resize: vertical;
     height: 6rem;
 }
 
-button {
+.userPortalContainer button {
     background-color: #01a9ac;
     color: white;
     margin-top: 1rem;
@@ -178,26 +185,26 @@ button {
     margin-left: -20rem;
 }
 
-button:hover {
+.userPortalContainer button:hover {
     background-color: #019d9b;
 }
 
 
-#Home{
+.userPortalContainer #Home{
     position: static;
     padding: 20px;
     width: 100%;
     background: transparent;
 }
 
-#Assigned{
+.userPortalContainer #Assigned{
     position: static;
     padding: 20px;
     width: 100%;
     background: transparent;
 }
 
-.main-skills {
+.userPortalContainer .main-skills {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -205,7 +212,7 @@ button:hover {
     justify-content: flex-start;
 }
 
-.main-skills .task-block-card {
+.userPortalContainer .main-skills .task-block-card {
     width: 30%;
     min-width: 200px;
     height: auto;
@@ -218,11 +225,11 @@ button:hover {
     word-wrap: break-word;
 }
 
-.task-title, .task-category, .task-description {
+.userPortalContainer .task-title, .userPortalContainer .task-category, .userPortalContainer .task-description {
     margin-bottom: 10px;
 }
 
-.main-skills .task-block-card button {
+.userPortalContainer .main-skills .task-block-card button {
     background: orangered;
     color: #fff;
     padding: 10px 20px;
@@ -232,63 +239,63 @@ button:hover {
     width: 6rem;
 }
 
-.main-skills .task-block-card button:hover {
+.userPortalContainer .main-skills .task-block-card button:hover {
     background: rgba(223, 70, 15, 0.856);
 }
 
-.view-more-btn{
+.userPortalContainer .view-more-btn{
     margin-top: 5rem;
     background-color: blue;
     color: white;
 }
 
-.home-use{
+.userPortalContainer .home-use{
     position: absolute;
     padding: 20px; 
     margin-top: 15px; 
 }
-.home-use h1{
+.userPortalContainer .home-use h1{
     font-size: 4rem;
     /* background-color: white; */
     border-radius: 20px;
     margin-left: auto;  
     margin-right: auto;
 }
-#Pending{
+.userPortalContainer #Pending{
     width: 31rem;
 }
 
-.home-use #MyQueries{
+.userPortalContainer .home-use #MyQueries{
     /* margin-top: 4rem; */
     width: 23rem;
 }
-.home-use .card{
+.userPortalContainer .home-use .card{
     width: 20rem;
 }
 
-.main-skills .task-block-card .accept-btn, .accept-btn{
+.userPortalContainer .main-skills .task-block-card .accept-btn, .userPortalContainer .accept-btn{
     background-color: green;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.main-skills .task-block-card .accept-btn:hover , .accept-btn:hover{
+.userPortalContainer .main-skills .task-block-card .accept-btn:hover , .userPortalContainer .accept-btn:hover{
     background: rgba(0, 128, 0, 0.546);
 }
-.main-skills .task-block-card .reject-btn, .reject-btn{
+.userPortalContainer .main-skills .task-block-card .reject-btn, .userPortalContainer .reject-btn{
     background-color: red;
     color: white;
     padding: 15px;
     border-radius: 10px;
 }
 
-.main-skills .task-block-card .reject-btn:hover , .reject-btn:hover{
+.userPortalContainer .main-skills .task-block-card .reject-btn:hover , .userPortalContainer .reject-btn:hover{
     background: rgba(255, 0, 0, 0.546);
 }
 
                     /* 'How to Use' Page */
-#HowToUse {
+.userPortalContainer #HowToUse {
     position: static;
     padding: 2rem;
     width: 100%;
@@ -297,7 +304,7 @@ button:hover {
     overflow-y: auto; 
 }
 
-#Accept{
+.userPortalContainer #Accept{
     margin-top: 2rem;
     width: 65rem;
     background-color: peachpuff;
@@ -306,13 +313,13 @@ button:hover {
     text-align: center;
     border-radius: 5rem;
 }
-#Accept .accept-btn{
+.userPortalContainer #Accept .accept-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
 }
-#Accept p{
+.userPortalContainer #Accept p{
     position: absolute;
     font-size: 2rem;
     justify-content: center;
@@ -320,7 +327,7 @@ button:hover {
     margin-left: 10rem;
 }
 
-#Reject{
+.userPortalContainer #Reject{
     margin-top: 2rem;
     width: 65rem;
     background-color: peachpuff;
@@ -330,13 +337,13 @@ button:hover {
     border-radius: 5rem;
 
 }
-#Reject .reject-btn{
+.userPortalContainer #Reject .reject-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
 }
-#Reject p{
+.userPortalContainer #Reject p{
     position: absolute;
     font-size: 2rem;
     justify-content: center;
@@ -344,7 +351,7 @@ button:hover {
     margin-left: 10rem;
 }
 
-#View-More{
+.userPortalContainer #View-More{
     margin-top: 2rem;
     width: 65rem;
     background-color: peachpuff;
@@ -353,13 +360,13 @@ button:hover {
     text-align: center;
     border-radius: 5rem;
 }
-#View-More .view-more-btn{
+.userPortalContainer #View-More .view-more-btn{
     margin-top: 0rem;
     margin-left: 1rem;
     height: 3rem;
     width: 7rem;
 }
-#View-More p{
+.userPortalContainer #View-More p{
     position: absolute;
     font-size: 2rem;
     justify-content: center;
@@ -368,13 +375,13 @@ button:hover {
 } 
 
                         /* My Profile */
-#Profile{
+.userPortalContainer #Profile{
     margin-left: 17.5rem;
     width: 40rem;
     background-color: transparent;
 }
 
-.wrapper{
+.userPortalContainer .wrapper{
     position: absolute;
     margin-top: 20rem;
     left: 50rem;
@@ -384,7 +391,7 @@ button:hover {
     display: flex;
 }
 
-.wrapper .left{
+.userPortalContainer .wrapper .left{
     width: 35%;
     height: 40rem;
     background: linear-gradient(to right, #01a9ac, #01dbdf);
@@ -397,20 +404,20 @@ button:hover {
     color: #fff;
 }
 
-.wrapper .left i{
+.userPortalContainer .wrapper .left i{
     font-size: 10rem;
     margin-top: -4rem;
     margin-bottom: 2rem;
     border-radius: 5px;
 }
 
-.wrapper .left h4{
+.userPortalContainer .wrapper .left h4{
     font-size: 2.5rem;
     margin-bottom: 1rem;
     margin-left: -0.5rem;
 }
 
-.wrapper .right{
+.userPortalContainer .wrapper .right{
     width: 65%;
     background: #fff;
     border-top-right-radius: 5px;
@@ -418,11 +425,11 @@ button:hover {
     padding: 3rem 2.5rem;
 }
 
-.wrapper .right .info, .wrapper .right .projects{
+.userPortalContainer .wrapper .right .info, .userPortalContainer .wrapper .right .projects{
     margin-bottom: 2.5rem;
 }
 
-.wrapper .right .info h3, .wrapper .right .projects h3{
+.userPortalContainer .wrapper .right .info h3, .userPortalContainer .wrapper .right .projects h3{
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
@@ -432,22 +439,22 @@ button:hover {
     letter-spacing: 0.5rem;
 }
 
-.wrapper .right .info_data .data, .wrapper .right .projects_data .data{
+.userPortalContainer .wrapper .right .info_data .data, .userPortalContainer .wrapper .right .projects_data .data{
     width: 80%;
 }
-.wrapper .right .info_data .data h4, .wrapper .right .projects_data .data h4{
+.userPortalContainer .wrapper .right .info_data .data h4, .userPortalContainer .wrapper .right .projects_data .data h4{
     color: #353c4e;
     margin-bottom: 0.5rem;
     font-size: 1.25rem;
 }
-.wrapper .right .info_data .data p, .wrapper .right .projects_data p{
+.userPortalContainer .wrapper .right .info_data .data p, .userPortalContainer .wrapper .right .projects_data p{
     font-size: 1rem;
     margin-bottom: 10px;
     color: #919aa3;
 }
 
                         /* Modal Box to view Query-Details*/
-.modal {
+.userPortalContainer .modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -459,7 +466,7 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
+.userPortalContainer .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -469,36 +476,36 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.close{
+.userPortalContainer .close{
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus{
+userPortalContainer .close:hover,
+.userPortalContainer .close:focus{
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal h2{
+.userPortalContainer .modal h2{
     margin-bottom: 10px;
 }
 
-.modal p{
+.userPortalContainer .modal p{
     margin: 5px 0;
 }
 
                         /* Settings Page */
-#Settings{
+.userPortalContainer #Settings{
     width: 40rem;
     margin-left: 25rem;
     background-color: transparent;
 }
 
-.wrapper-settings {
+.userPortalContainer .wrapper-settings {
     position: absolute;
     margin-top: 30rem;
     left: 50%;
@@ -514,21 +521,21 @@ button:hover {
     font-size: 4rem;
 }
 
-.form-group {
+.userPortalContainer .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
     margin-left: 2rem;
 }
 
-.form-group label {
+.userPortalContainer .form-group label {
     margin-bottom: 0.5rem;
     color: #353c4e;
     font-size: 1.25rem;
 }
 
-.form-group input,
-.form-group textarea {
+.userPortalContainer .form-group input,
+.userPortalContainer .form-group textarea {
     width: 25rem;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -536,16 +543,16 @@ button:hover {
     font-size: 1rem;
 }
 
-.form-group select{
+.userPortalContainer .form-group select{
     width: 25rem;
 }
 
-textarea {
+.userPortalContainer textarea {
     resize: none;
     height: 8rem;
 }
 
-button {
+.userPortalContainer button {
     background-color: #01a9ac;
     color: white;
     margin-top: 1rem;
@@ -557,11 +564,11 @@ button {
     font-size: 1rem;
 }
 
-button:hover {
+.userPortalContainer button:hover {
     background-color: #019d9b;
 }
 
-.main-skills .task-block-card .view-more-btn {
+.userPortalContainer .main-skills .task-block-card .view-more-btn {
     background: blue;
     color: white;
     padding: 15px;
@@ -570,6 +577,6 @@ button:hover {
     cursor: pointer;
 } 
 
-.main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
+.userPortalContainer .main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
     background: #019d9b;
 }

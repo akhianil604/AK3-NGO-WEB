@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./User-Portal.css";
-import "../Register-Plea";
+import './User-Portal.css'
 import RegisterPlea from "../Register-Plea";
 import TasksContainer from "../Task-Container";
 
@@ -10,12 +9,30 @@ const UserPortal = ()=>{
     {
         "title": "Minor Girl being forcibly married",
         "category": "Child Marriage",
-        "description": "Attend to the immediate requirements of new project planning."
+        "description": "Attend to the immediate requirements of new project planning.",
+        "name": "hello",
+        "gender": "Male",
+        "dob": "27-01-2001",
+        "phone": "aaa",
+        "email": "mail",
+        "marital": "married",
+        "education": "edu",
+        "address": "address",
+        "city": "city"
     },
     {
         "title": "News about transaction of individuals",
         "category": "Women & Children Trafficking",
-        "description": "Finalize the proposals and funding reports."
+        "description": "Finalize the proposals and funding reports.",
+        "name": "hello",
+        "gender": "Male",
+        "dob": "27-01-2001",
+        "phone": "aaa",
+        "email": "mail",
+        "marital": "married",
+        "education": "edu",
+        "address": "address",
+        "city": "city"
     }]);
 
     
@@ -26,7 +43,7 @@ const UserPortal = ()=>{
           method: 'GET', // The default method is 'GET', so this can be omitted if not changing
           headers: {
             'Content-Type': 'application/json', // Add any other headers you need
-            'Authorization': `Bearer ${yourAuthToken}`, // Add your token here
+            'Authorization': `Bearer ${localStorage.token}`, // Add your token here
           },
         });
 
@@ -45,6 +62,8 @@ const UserPortal = ()=>{
   }, []); */
 
   const [activeSection, setActiveSection] = useState('Profile')
+
+  
 
 /* function saveChanges() { //This should be replaced by the new api call
     const name = document.getElementById('name').value;
@@ -67,7 +86,7 @@ const UserPortal = ()=>{
 
 
   return (
-    <div className="container">
+    <div className="userPortalContainer">
       <nav>
         <ul>
           <li>
@@ -78,7 +97,7 @@ const UserPortal = ()=>{
           <li>
             <a href="#" onClick={() => setActiveSection("RegisterPlea")}>
               <i class="fa fa-home"></i>
-              <span className="nav-item" id="Pending">
+              <span className="nav-item" id="Register-Plea">
                 Register A Plea
               </span>
             </a>
@@ -162,6 +181,7 @@ const UserPortal = ()=>{
       <section className={activeSection === 'Profile' ? 'page-active' : 'page-hidden'} id="Profile">
         <div className="wrapper">
           <div className="left">
+            <i class="fa fa-users" aria-hidden="true"></i>
             <h4>Divya</h4>
             <p>USR54132</p>
           </div>
@@ -207,25 +227,25 @@ const UserPortal = ()=>{
         <div className="wrapper-settings">
           <form id="settingsForm">
             <div className="form-group">
-              <label for="name">Name:</label>
+              <label htmlFor="name">Name:</label>
               <input type="text" id="name" value="Smile Foundation" />
             </div>
             <div class="form-group">
-              <label for="email">Email:</label>
+              <label htmlFor="email">Email:</label>
               <input type="email" id="email" value="alex@gmail.com" />
             </div>
             <div class="form-group">
-              <label for="phone">Phone:</label>
+              <label htmlFor="phone">Phone:</label>
               <input type="text" id="phone" value="0001-0453-2423" />
             </div>
             <div class="form-group">
-              <label for="address">Address:</label>
+              <label htmlFor="address">Address:</label>
               <textarea id="address">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </textarea>
             </div>
             <div class="form-group">
-              <label for="password">New Password:</label>
+              <label htmlFor="password">New Password:</label>
               <input
                 type="password"
                 id="password"
@@ -233,7 +253,7 @@ const UserPortal = ()=>{
               />
             </div>
             <div class="form-group">
-              <label for="gender">Gender:</label>
+              <label htmlFor="gender">Gender:</label>
               <select id="gender">
                 <option value="M">Male</option>
                 <option value="F">Female</option>
@@ -241,7 +261,7 @@ const UserPortal = ()=>{
               </select>
             </div>
             <div class="form-group">
-              <label for="marital-status">Marital Status:</label>
+              <label htmlFor="marital-status">Marital Status:</label>
               <select id="marital-status">
                 <option value="Unmarried">Unmarried</option>
                 <option value="Married">Married</option>
@@ -249,7 +269,7 @@ const UserPortal = ()=>{
               </select>
             </div>
             <div class="form-group">
-              <label for="education">Educational Qualification:</label>
+              <label htmlFor="education">Educational Qualification:</label>
               <select id="education">
                 <option value="Undergraduate">Undergraduate</option>
                 <option value="Postgraduate">Postgraduate</option>

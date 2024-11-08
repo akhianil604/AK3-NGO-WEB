@@ -1,9 +1,13 @@
 import React from 'react';
-import './project.css';
+import '../login.css';
 
-function PolicePortal() {
+function PoliceLogin() {
     return (
-        <div className="police-background">
+        <div className="police-background"
+            style={{
+                background: "url('Police_image.jpg') no-repeat center center fixed",
+                backgroundSize: "cover"
+            }}>
             <section id="police-portal-header">
                 <div className="header">
                     <h1>Welcome to the Police Login</h1>
@@ -32,4 +36,4 @@ function PolicePortal() {
     );
 }
 
-export default PolicePortal;
+export default PoliceLogin;

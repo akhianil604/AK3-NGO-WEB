@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&family=Montserrat:wght@400;600&display=swap');
 
-body {
+.homePage {
     font-family: 'Lora', serif;
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-nav {
+.homePage nav {
     background-color: rgba(0, 123, 167, 0.85);
     padding: 1rem 2rem;
     display: flex;
@@ -26,7 +26,7 @@ nav {
     z-index: 1000;
 }
 
-.logo {
+.homePage .logo {
     color: #f4f4f4;
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
@@ -35,7 +35,7 @@ nav {
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-nav ul {
+.homePage nav ul {
     list-style-type: none;
     display: flex;
     gap: 1.5rem;
@@ -43,11 +43,11 @@ nav ul {
     margin: 0;
 }
 
-nav ul li {
+.homePage nav ul li {
     display: inline;
 }
 
-nav ul li a {
+.homePage nav ul li a {
     color: #ffffff;
     text-decoration: none;
     padding: 0.6rem 1.2rem;
@@ -57,13 +57,13 @@ nav ul li a {
     font-weight: 600;
 }
 
-nav ul li a:hover {
+.homePage nav ul li a:hover {
     background-color: #005f7f;
     transform: translateY(-3px);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.main-title, .subtitle {
+.homePage .main-title, .subtitle {
     font-family: 'Playfair Display', serif;
     color: #003366;
     text-align: center;
@@ -71,19 +71,19 @@ nav ul li a:hover {
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
 }
 
-.main-title {
+.homePage .main-title {
     font-size: 4rem;
     margin-top: 2.5rem;
     animation: fadeIn 1s ease-in-out;
 }
 
-.subtitle {
+.homePage .subtitle {
     font-size: 2rem;
     margin-bottom: 2.5rem;
     animation: fadeIn 1.5s ease-in-out;
 }
 
-.section-title {
+.homePage .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     color: #003366;
@@ -92,7 +92,7 @@ nav ul li a:hover {
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.stakeholder-cards {
+.homePage .stakeholder-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
@@ -101,7 +101,7 @@ nav ul li a:hover {
     margin: 5% ;
 }
 
-.card {
+.homePage .card {
     background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -110,29 +110,29 @@ nav ul li a:hover {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover {
+.homePage .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.card img.icon {
+.homePage .card img.icon {
     height: 100px;
     width: 100px;
     margin-bottom: 1rem;
 }
 
-.card h3 {
+.homePage .card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: #005580;
 }
 
-.card p {
+.homePage .card p {
     font-size: 1rem;
     color: #555555;
 }
 
-#support {
+.homePage #support {
     background: #dff0f7;
     border-radius: 15px;
     padding: 2rem;
@@ -142,7 +142,7 @@ nav ul li a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.support-text p {
+.homePage .support-text p {
     font-size: 1.2rem;
     color: #2a2a2a;
     margin: 0;
@@ -154,18 +154,18 @@ nav ul li a:hover {
     to { opacity: 1; }
 }
 
-.reveal {
+.homePage .reveal {
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.6s ease-out;
 }
 
-.reveal.active {
+.homePage .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-footer {
+.homePage footer {
     background: rgba(0, 123, 167, 0.85);
     padding: 1.5rem 2rem;
     text-align: center;
@@ -179,23 +179,23 @@ footer {
     font-family: 'Montserrat', sans-serif;
 }
 
-footer a {
+.homePage footer a {
     color: #ffffff;
     text-decoration: none;
     margin: 0 0.5rem;
     transition: color 0.3s, transform 0.2s;
 }
 
-footer a:hover {
+.homePage footer a:hover {
     color: #FFD700;
     transform: scale(1.1);
 }
 
-body, nav, footer {
+.homePage body, nav, footer {
     font-family: 'Montserrat', sans-serif;
 }
 
-#about-us {
+.homePage #about-us {
     background-color: #f9f9f9;
     padding: 2rem;
     border-radius: 8px;
@@ -204,7 +204,7 @@ body, nav, footer {
     max-width: 800px;
 }
 
-.abtus1 {
+.homePage .abtus1 {
     font-family: 'Georgia', serif; 
     font-size: 2rem;
     color: darkblue;
@@ -212,7 +212,7 @@ body, nav, footer {
     text-align: center;
 }
 
-.abtus2,.abtus3 {
+.homePage .abtus2,.abtus3 {
     font-size: 1rem;
     line-height: 1.6;
     color: #444;
@@ -220,25 +220,25 @@ body, nav, footer {
     text-align: justify;
 }
 
-.abtus-subparts {
+.homePage .abtus-subparts {
     list-style-type: disc;
     margin-left: 2rem;
     padding: 0;
 }
 
-.abtus-subparts-item {
+.homePage .abtus-subparts-item {
     margin-bottom: 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
     color: #444;
 }
 
-.abtus-subparts-item strong {
+.homePage .abtus-subparts-item strong {
     font-family: 'Georgia', serif; 
     color: darkblue;
 }
 
-#contact-us {
+.homePage #contact-us {
     background-color: #f9f9f9;
     padding: 2rem;
     border-radius: 8px;
@@ -248,19 +248,19 @@ body, nav, footer {
     text-align: center;
 }
 
-.contact-info {
+.homePage .contact-info {
     font-size: 1rem;
     color: #444;
     margin-bottom: 1.5rem;
 }
 
-.contact-info-h {
+.homePage .contact-info-h {
     font-size: 1rem;
     color: darkcyan;
     margin-bottom: 1.5rem;
 }
 
-.contact-details {
+.homePage .contact-details {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -268,25 +268,25 @@ body, nav, footer {
     color: #555;
 }
 
-.contact-details-item {
+.homePage .contact-details-item {
     margin-bottom: 1rem;
 }
 
-.contact-details-item strong {
+.homePage .contact-details-item strong {
     font-family: 'Georgia', serif; 
     color: darkcyan;
 }
 
-.contact-details a {
+.homePage .contact-details a {
     color: darkblue;
     text-decoration: none;
 }
 
-.contact-details a:hover {
+.homePage .contact-details a:hover {
     text-decoration: underline;
 }
 
-#register-plea {
+.homePage #register-plea {
     background-color: #f9f9f9;
     padding: 2rem;
     border-radius: 8px;
@@ -296,25 +296,25 @@ body, nav, footer {
     width : 40% ;
 }
 
-.plea-form {
+.homePage .plea-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.form-group {
+.homePage .form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.form-group label {
+.homePage .form-group label {
     font-weight: bold;
     color: #444;
 }
 
 .form-group input,
-.form-group textarea {
+.homePage .form-group textarea {
     padding: 0.75rem;
     font-size: 1rem;
     border-radius: 4px;
@@ -323,19 +323,19 @@ body, nav, footer {
     box-sizing: border-box;
 }
 
-.checkbox-group input[type="checkbox"] {
+.homePage .checkbox-group input[type="checkbox"] {
     width :auto ;
 }
 
-.form-group input[type="radio"] {
+.homePage .form-group input[type="radio"] {
     width: auto ;
 }
 
-.form-group input[type="file"] {
+.homePage .form-group input[type="file"] {
     padding: 0.5rem 0;
 }
 
-.submit-btn {
+.homePage .submit-btn {
     padding: 0.75rem;
     background-color: rgb(122, 180, 199);
     color: white;
@@ -346,12 +346,12 @@ body, nav, footer {
     transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
+.homePage .submit-btn:hover {
     background-color: rgb(102, 160, 179);
 }
 
 
-.donate {
+.homePage .donate {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -360,20 +360,20 @@ body, nav, footer {
     text-align: center;
 }
 
-.donate h2 {
+.homePage .donate h2 {
     font-size: 2rem;
     margin-bottom: 10px;
     color: black;
 }
 
-.donate p {
+.homePage .donate p {
     font-size: 1.2rem;
     margin-bottom: 20px;
     color: black;
 }
 
 
-.top-section {
+.homePage .top-section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -421,7 +421,11 @@ body, nav, footer {
 }
 
 .admin-background {
-    background: url('admin_image.jfif') no-repeat center center fixed;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    position: absolute;
+    /* background: url('admin_image.jfif') no-repeat center center fixed; */
     background-size: cover;
 }
 
@@ -491,8 +495,10 @@ body, nav, footer {
 
 
 .sister-background {
-    background: url('Sister_image.png') no-repeat center center fixed;
-    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    position: absolute;
 }
 
 #sister-portal-header {
@@ -561,8 +567,10 @@ body, nav, footer {
 
 
 .police-background {
-    background: url('Police_image.jpg') no-repeat center center fixed;
-    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    position: absolute;
 }
 
 #police-portal-header {
@@ -630,8 +638,10 @@ body, nav, footer {
 
 
 .user-background {
-    background: url('User_image.jpg') no-repeat center center fixed;
-    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    position: absolute;
 }
 
 #user-portal-header {

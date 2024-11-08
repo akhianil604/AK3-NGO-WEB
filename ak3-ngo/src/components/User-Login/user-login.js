@@ -1,9 +1,13 @@
 import React from 'react';
-import './project.css';
+import '../login.css';
 
-function UserPortal() {
+function UserLogin() {
     return (
-        <div className="user-background">
+        <div className="user-background"
+            style={{
+                background: "url('User_image.jpg') no-repeat center center fixed",
+                backgroundSize: "cover"
+            }}>
             <section id="user-portal-header">
                 <div className="header">
                     <h1>Welcome to the User Login</h1>
@@ -32,4 +36,4 @@ function UserPortal() {
     );
 }
 
-export default UserPortal;
+export default UserLogin;
