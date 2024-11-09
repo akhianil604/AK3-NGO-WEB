@@ -1,5 +1,6 @@
 // Import necessary packages
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/mydb');   // Import the connectDB function
 const routes = require('./routes/routes');
 
@@ -7,6 +8,11 @@ const routes = require('./routes/routes');
 const app = express();
 
 // Middleware
+app.use(cors({
+    origin: 'http://localhost:3000', // URL of your frontend (React, etc.)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // If you need to send cookies or authentication headers
+  }));
 app.use(express.json());
 
 // Connect to MongoDB

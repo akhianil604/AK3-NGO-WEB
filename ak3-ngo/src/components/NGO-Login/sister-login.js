@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import '../login.css';
 
 function SisterLogin() {
@@ -12,7 +13,8 @@ function SisterLogin() {
                 <div className="header">
                     <h1>Welcome to the Sister Login</h1>
                     <p>This is the sister portal where you can access resources and information for our NGO’s sister-concern entities.</p>
-                    <a href="/" className="back-btn">Go Back to (AK)<sup>3</sup>'s NGO Home Page</a>
+                    {/* <a href="/" className="back-btn">Go Back to (AK)<sup>3</sup>'s NGO Home Page</a> */}
+                    <Link to="/" className="back-btn">Go Back to (AK)<sup>3</sup>'s NGO Home Page</Link>
                 </div>
             </section>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import '../login.css';
 
 function PoliceLogin() {
@@ -12,7 +13,8 @@ function PoliceLogin() {
                 <div className="header">
                     <h1>Welcome to the Police Login</h1>
                     <p>This is the police portal where authorized personnel can access and review cases redirected by our NGO.</p>
-                    <a href="/" className="back-btn">Go Back to (AK)<sup>3</sup>'s NGO Home Page</a>
+                    {/* <a href="/" className="back-btn">Go Back to (AK)<sup>3</sup>'s NGO Home Page</a> */}
+                    <Link to="/" className="back-btn">Go Back to (AK)<sup>3</sup>'s NGO Home Page</Link>
                 </div>
             </section>
 

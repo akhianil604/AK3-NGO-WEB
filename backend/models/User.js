@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     gender: {type: String, enum: ["male", "female", "other"], required: true},
     dob: { type: Date, required: true},
-    age: { type: Number, required: true},
+    // age: { type: Number, required: true},
     email: { type: String, required: true, unique: true, 
         validate: {
             validator: function(v) {
@@ -18,12 +18,12 @@ const userSchema = new mongoose.Schema({
     phone_no: { type: String, required: true,
         validate: {
             validator: function(v) {
-                return /\d{9}/.test(v);
+                return /\d{10}/.test(v);
             },
             message: "Please enter a valid phone no"
         },},
     married: { type: String, enum: ['minor', 'unmarried', 'married'], required: true},
-    education: { type: String, enum:['school', '10thpass', '12th_pass', 'diploma', 'undergrad', 'postgrad'], required: true},
+    education: { type: String, enum:['school', '10thpass', '12thpass', 'diploma', 'undergrad', 'postgrad'], required: true},
     address: { type: String, required: true},
     city: { type: String, required: true},
     state: { type: String, required: true},

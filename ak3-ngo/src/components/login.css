@@ -47,7 +47,7 @@
     display: inline;
 }
 
-.homePage nav ul li a {
+/* .homePage nav ul li a {
     color: #ffffff;
     text-decoration: none;
     padding: 0.6rem 1.2rem;
@@ -60,6 +60,26 @@
 .homePage nav ul li a:hover {
     background-color: #005f7f;
     transform: translateY(-3px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+} */
+
+.homePage nav ul li button {
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.homePage nav ul li button:hover {
+    background-color: #005f7f;
+    /* transform: translateY(-3px); */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 

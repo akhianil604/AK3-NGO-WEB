@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const auth = require("../auth")
 
 const register = async (req, res) => {
-    const { name, password, gender, email, phone_no,
-        dob, age, married, education, address,
+    const { name, password, gender, email, phone,
+        DOB, maritalStatus, education, address,
         city, state
      } = req.body;
 
@@ -26,10 +26,9 @@ const register = async (req, res) => {
                 password: hashedPassword,
                 gender: gender,
                 email: email,
-                phone_no: phone_no,
-                dob: dob,
-                age: age,
-                married: married,
+                phone_no: phone,
+                dob: DOB,
+                married: maritalStatus,
                 education: education,
                 address: address,
                 city: city,
@@ -63,7 +62,7 @@ const login = async (req, res) => {
 const newAnonQuery = async (req, res) => {
     const { name, email, phone_no, gender,
         dob, age, married, education, address,
-        city, state, title, desc, category, files, 
+        city, state, title, desc, category, 
      } = req.body;
 
     try {
@@ -83,7 +82,7 @@ const newAnonQuery = async (req, res) => {
             title: title, 
             desc: desc,
             category: category,
-            files: files,
+            // files: files,
         });
         await newQuery.save();
         res.status(201).send('Query created');
@@ -98,7 +97,7 @@ const newAnonQuery = async (req, res) => {
 const newRegisteredQuery = async (req, res) => {
     const { user, name, email, phone_no, gender,
         dob, age, married, education, address,
-        city, state, title, desc, category, files, 
+        city, state, title, desc, category, 
     } = req.body;
 
     const session = await mongoose.startSession();
@@ -122,7 +121,7 @@ const newRegisteredQuery = async (req, res) => {
             title: title, 
             desc: desc,
             category: category,
-            files: files,
+            // files: files,
         });
         await newQuery.save({ session });
 

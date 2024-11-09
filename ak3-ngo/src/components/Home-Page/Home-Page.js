@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../login.css";
 const HomePage = ()=>{
 
@@ -22,7 +23,7 @@ const HomePage = ()=>{
 
     const handlePleaChange = (e) => {
         const { name, value } = e.target;
-        if(name == "categories"){
+        if(name === "categories"){
             setPleaData(prevState => ({
                 ...prevState,
                 [name]: [...prevState[name], value]
@@ -75,7 +76,7 @@ const HomePage = ()=>{
 
     const handleUserDataChange = (e) => {
         const { name, value } = e.target;
-        if(name == "categories"){
+        if(name === "categories"){
             setUserData(prevState => ({
                 ...prevState,
                 [name]: [...prevState[name], value]
@@ -90,6 +91,30 @@ const HomePage = ()=>{
     };
 
     //Add handleUserDataSubmit with API
+    const handleUserDataSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/api/registerUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),  // Send user data as JSON
+            });
+    
+            // Check if the response is okay
+            if (!response.ok) {
+                const errorText = await response.text();  // Get response text if there's an error
+                throw new Error(errorText);
+            }
+    
+            const result = await response.json();  // Parse the JSON response
+            console.log('Success:', result);
+        } catch (error) {
+            console.error('Error during the API request:', error);
+        }
+    };
+    
 
     useEffect(() => {
         // Function to reveal sections on scroll
@@ -126,15 +151,15 @@ const HomePage = ()=>{
             <nav>
                 <h1 class="logo">(AK)<sup>3</sup>'s NGO</h1>
                 <ul class="center-links">
-                    <li><a href="#" onClick={()=>setActiveSection('home')}>Home Page</a></li>
-                    <li><a href="#" onClick={()=>setActiveSection('about-us')}>About Us</a></li>
-                    <li><a href="#" onClick={()=>setActiveSection('contact-us')}>Contact Us</a></li>
-                    <li><a href="#" onClick={()=>setActiveSection('register-plea')}>Register Plea</a></li>
-                    <li><a href="#" onClick={()=>setActiveSection('donate')}>Donate</a></li>
+                    <li><button onClick={() => setActiveSection('home')}>Home Page</button></li>
+                    <li><button onClick={() => setActiveSection('about-us')}>About Us</button></li>
+                    <li><button onClick={() => setActiveSection('contact-us')}>Contact Us</button></li>
+                    <li><button onClick={() => setActiveSection('register-plea')}>Register Plea</button></li>
+                    <li><button onClick={() => setActiveSection('donate')}>Donate</button></li>
                 </ul>
                 <ul class="right-links">
-                    <li><a href="#" onClick={()=>setActiveSection('login')}>Login</a></li>
-                    <li><a href="#" onClick={()=>setActiveSection('user-signup')}>User Signup</a></li>
+                    <li><button onClick={() => setActiveSection('login')}>Login</button></li>
+                    <li><button onClick={() => setActiveSection('user-signup')}>User Signup</button></li>
                 </ul>
             </nav>
 
@@ -253,20 +278,20 @@ const HomePage = ()=>{
                     <label>Gender:</label>
                         <div class="form-group"> 
                             <div>
-                                <input type="radio" id="male" name="gender" value="Male"
-                                    checked={pleaData.gender === 'Male'}
+                                <input type="radio" id="male" name="gender" value="male"
+                                    checked={pleaData.gender === 'male'}
                                     onChange={handlePleaChange}/>
                                 <label htmlFor="male">Male</label>
                             </div>
                             <div>
-                                <input type="radio" id="female" name="gender" value="Female"
-                                    checked={pleaData.gender === 'Female'}
+                                <input type="radio" id="female" name="gender" value="female"
+                                    checked={pleaData.gender === 'female'}
                                     onChange={handlePleaChange}/>
                                 <label htmlFor="female">Female</label>
                             </div>
                             <div>
-                                <input type="radio" id="others" name="gender" value="Others"
-                                    checked={pleaData.gender === 'Others'}
+                                <input type="radio" id="others" name="gender" value="other"
+                                    checked={pleaData.gender === 'other'}
                                     onChange={handlePleaChange}/>
                                 <label htmlFor="others">Others</label>
                             </div>
@@ -547,20 +572,29 @@ const HomePage = ()=>{
                         <h2>Sister Portal</h2>
                         <img src="Ngo.png" alt="Sister NGOs" class="icon"/>
                         <br/>
-                        <button class="login-btn" onclick="navigateToPortal('sister')">Login</button>
+                        <Link to="/sister-ngo/login" className="back-btn">
+                            <button class="login-btn">Login</button>
+                        </Link>
+                        
                     </div>
                     <div class="police-portal">
                         <h2>Police Portal</h2>
                         <img src="Police.png" alt="Police" class="icon"/>
                         <br/>
-                        <button class="login-btn" onclick="navigateToPortal('police')">Login</button>
+                        {/* <button class="login-btn" onclick="navigateToPortal('police')">Login</button> */}
+                        <Link to="/police/login" className="back-btn">
+                            <button class="login-btn">Login</button>
+                        </Link>
                     </div>
                 </div>
                 <div class="bottom-section">
                     <h2>User Portal</h2>
                     <img src="Profile.png" alt="User" class="icon"/>
                     <br/>
-                    <button class="login-btn" onclick="navigateToPortal('user')">Login</button>
+                    {/* <button class="login-btn" onclick="navigateToPortal('user')">Login</button> */}
+                    <Link to="/user/login" className="back-btn">
+                        <button class="login-btn">Login</button>
+                    </Link>
                 </div>
             </section>
             
@@ -586,20 +620,20 @@ const HomePage = ()=>{
                     <label>Gender:</label>
                         <div class="user-signup2"> {/* <!--user-signup2-g--> */}
                             <div>
-                                <input type="radio" id="male" name="gender" value="Male"
-                                    checked={userData.gender === "Male"}
+                                <input type="radio" id="male" name="gender" value="male"
+                                    checked={userData.gender === "male"}
                                     onChange={handleUserDataChange}/>
                                 <label htmlFor="male">Male</label>
                             </div>
                             <div>
-                                <input type="radio" id="female" name="gender" value="Female"
-                                    checked={userData.gender === "Female"}
+                                <input type="radio" id="female" name="gender" value="female"
+                                    checked={userData.gender === "female"}
                                     onChange={handleUserDataChange}/>
                                 <label htmlFor="female">Female</label>
                             </div>
                             <div>
-                                <input type="radio" id="others" name="gender" value="Others"
-                                    checked={userData.gender === "Others"}
+                                <input type="radio" id="others" name="gender" value="other"
+                                    checked={userData.gender === "other"}
                                     onChange={handleUserDataChange}/>
                                 <label htmlFor="others">Others</label>
                             </div>
@@ -633,33 +667,33 @@ const HomePage = ()=>{
                             onChange={handleUserDataChange}>
 
                             <option value="" disabled selected>Select your qualification</option>
-                            <option value="schooling-not-completed">Schooling Not Completed</option>
-                            <option value="10th-pass">10th Grade Pass</option>
-                            <option value="12th-pass">12th Grade Pass</option>
+                            <option value="school">Schooling Not Completed</option>
+                            <option value="10thpass">10th Grade Pass</option>
+                            <option value="12thpass">12th Grade Pass</option>
                             <option value="diploma">Diploma</option>
-                            <option value="undergraduate">Undergraduate</option>
-                            <option value="graduate-postgraduate">Graduate/Postgraduate</option>
+                            <option value="undergrad">Undergraduate</option>
+                            <option value="postgrad">Graduate/Postgraduate</option>
                         </select>
                     </div>
 
                     <label>Marital Status:</label>
                         <div class="user-signup2"> 
                             <div>
-                                <input type="radio" id="minor" name="Marital Status" value="Minor"
-                                    checked={userData.maritalStatus === 'Minor'}
-                                    onChange={handleUserDataChange}/>
+                                <input type="radio" id="minor" name="maritalStatus" value="minor"
+                                    onChange={handleUserDataChange}
+                                    checked={userData.maritalStatus === "minor"}/>
                                 <label htmlFor="minor">Minor</label>
                             </div>
                             <div>
-                                <input type="radio" id="unmarried" name="Marital Status" value="Unmarried"
-                                    checked={userData.maritalStatus === 'Unmarried'}
-                                    onChange={handleUserDataChange}/>
+                                <input type="radio" id="unmarried" name="maritalStatus" value="unmarried"
+                                    onChange={handleUserDataChange}
+                                    checked={userData.maritalStatus === 'unmarried'}/>
                                 <label htmlFor="unmarried">Unmarried</label>
                             </div>
                             <div>
-                                <input type="radio" id="married" name="Marital Status" value="Married"
-                                    checked={userData.maritalStatus === 'Married'}
-                                    onChange={handleUserDataChange}/>
+                                <input type="radio" id="married" name="maritalStatus" value="married"
+                                    onChange={handleUserDataChange}
+                                    checked={userData.maritalStatus === 'married'}/>
                                 <label htmlFor="married">Married</label>
                             </div>
                         </div>
@@ -693,7 +727,7 @@ const HomePage = ()=>{
                             onChange={handleUserDataChange}/>
                     </div>
                     
-                    <button type="submit" class="login-btn">Login</button>
+                    <button type="submit" class="login-btn" onClick={handleUserDataSubmit}>Login</button>
                     
                     
                 </form>
