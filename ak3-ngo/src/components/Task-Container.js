@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
-function TasksContainer({ tasks }) {
+function TasksContainer({ tasks, role }) {
     const [modalData, setModalData] = useState(null);
+    // console.log(role);
 
     const handleViewMoreClick = (task) => {
+        // console.log(task);
         setModalData(task);
     };
 
@@ -15,16 +17,25 @@ function TasksContainer({ tasks }) {
         <div className="main-skills" id="assignedTasksContainer">
             {/* Render tasks */}
             {tasks.map((task) => (
-                <div key={task.id} className="task-block-card">
+                <div key={task._id} className="task-block-card">
                     <h3 className="task-title">{task.title}</h3>
                     <p className="task-category"><strong>Category:</strong> {task.category}</p>
 
-                    <button className="accept-btn">Accept</button>
-                    <button className="reject-btn">Reject</button>
-                    <button className="view-more-btn"
-                        onClick={() => handleViewMoreClick(task)}>
-                        View More
-                    </button>
+                    {(role === "ngo" || role === "police") && (<>
+                        <button className="accept-btn">Accept</button>
+                        <button className="reject-btn">Reject</button>
+                        <button className="view-more-btn"
+                            onClick={() => handleViewMoreClick(task)}>
+                            View More
+                        </button>
+                    </>)}
+                    {role === "user" && (<>
+                        <button className="delete-btn">Delete</button>
+                        <button className="view-more-btn"
+                            onClick={() => handleViewMoreClick(task)}>
+                            View More
+                        </button>
+                    </>)}
                 </div>
             ))}
 

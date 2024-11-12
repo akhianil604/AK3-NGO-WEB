@@ -26,31 +26,62 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
     });
   };
 
-  const handlePleaSubmit = (e) => {
+  const handlePleaSubmit = async(e) => {
     e.preventDefault();
     
-    const newTask={title: formData.title,
-      category: formData.category,
-      description: formData.description
-    }
-    setMyQueries([...MyQueries, newTask]);
-    console.log(formData);
-    setFormData({
-      victimName: '',
-      gender: '',
-      dob: '',
-      phone: '',
-      email: '',
-      maritalStatus: '',
-      education: 'None',
-      address: '',
-      city: '',
-      state: '',
-      title: '',
-      category: 'Harassment',
-      description: '',
-      file: null,
-    });
+    try {
+      const token = sessionStorage.getItem('authToken');
+      // console.log(formData);
+      const response = await fetch('http://localhost:5000/api/newRegisteredQuery', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token ? `Bearer ${token}` : ''  
+          },
+          body: JSON.stringify(formData), 
+          
+      });
+
+      if (!response.ok) {
+          const errorText = await response.text();  
+          throw new Error(errorText);
+      }
+
+      const newTask={title: formData.title,
+        category: formData.category,
+        description: formData.description,
+        name: formData.victimName,
+        gender: formData.gender,
+        dob: formData.dob,
+        email: formData.email,
+        phone: formData.phone,
+        marital: formData.maritalStatus,
+        education: formData.education,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+      }
+      setMyQueries([...MyQueries, newTask]);
+      // console.log(formData);
+      setFormData({
+        victimName: '',
+        gender: '',
+        dob: '',
+        phone: '',
+        email: '',
+        maritalStatus: '',
+        education: '',
+        address: '',
+        city: '',
+        state: '',
+        title: '',
+        category: '',
+        description: '',
+      });
+  } catch (error) {
+      console.error('Error during the API request:', error);
+  }
+
   };
 
   return (
@@ -275,7 +306,9 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
           />
         </div>*/}
 
-        <button type="submit">Submit</button>
+        <div className="form-group">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

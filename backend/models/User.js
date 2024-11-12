@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     usercode: { type: String, required: true, unique: true}, //only used for login
     name: { type: String, required : true},
     password: { type: String, required: true },
-    gender: {type: String, enum: ["male", "female", "other"], required: true},
+    gender: {type: String, enum: ["Male", "Female", "Other"], required: true},
     dob: { type: Date, required: true},
     // age: { type: Number, required: true},
     email: { type: String, required: true, unique: true, 
@@ -15,15 +15,15 @@ const userSchema = new mongoose.Schema({
             message: "Please enter a valid email"
         },
     },
-    phone_no: { type: String, required: true,
+    phone: { type: String, required: true,
         validate: {
             validator: function(v) {
                 return /\d{10}/.test(v);
             },
             message: "Please enter a valid phone no"
         },},
-    married: { type: String, enum: ['minor', 'unmarried', 'married'], required: true},
-    education: { type: String, enum:['school', '10thpass', '12thpass', 'diploma', 'undergrad', 'postgrad'], required: true},
+    marital: { type: String, enum: ['Minor', 'Unmarried', 'Married'], required: true},
+    education: { type: String, enum:['None', 'Primary', 'Secondary', 'Diploma', 'UG', 'PG'], required: true},
     address: { type: String, required: true},
     city: { type: String, required: true},
     state: { type: String, required: true},

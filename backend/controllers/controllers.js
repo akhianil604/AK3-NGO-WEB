@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Query = require('../models/Query');
 const bcrypt = require('bcrypt');
 const auth = require("../auth")
+const mongoose = require('mongoose')
 
 const register = async (req, res) => {
     const { name, password, gender, email, phone,
@@ -26,9 +27,9 @@ const register = async (req, res) => {
                 password: hashedPassword,
                 gender: gender,
                 email: email,
-                phone_no: phone,
+                phone: phone,
                 dob: DOB,
-                married: maritalStatus,
+                marital: maritalStatus,
                 education: education,
                 address: address,
                 city: city,
@@ -47,9 +48,9 @@ const login = async (req, res) => {
     const { usercode, password } = req.body;
 
     try {
-        const user = await User.findOne({ usercode });
+        const user = await User.findOne({ usercode:  usercode });
         if (user && await bcrypt.compare(password, user.password)) {
-            res.send({token: generateToken(user)}); // This should be stored in localstorage on frontend
+            res.send({token: auth.generateToken(user)}); // This should be stored in localstorage on frontend
         } else {
             res.status(401).send('Invalid credentials'); 
         }
@@ -60,9 +61,9 @@ const login = async (req, res) => {
 };
 
 const newAnonQuery = async (req, res) => {
-    const { name, email, phone_no, gender,
-        dob, age, married, education, address,
-        city, state, title, desc, category, 
+    const { name, email, phone, gender,
+        dob, marital, education, address,
+        city, state, title, description, category, 
      } = req.body;
 
     try {
@@ -70,17 +71,16 @@ const newAnonQuery = async (req, res) => {
             name: name, 
             gender: gender,
             email: email,
-            phone_no: phone_no,
+            phone: phone,
             dob: dob,
-            age: age,
-            married: married,
+            marital: marital,
             education: education,
             address: address,
             city: city,
             state: state,
 
             title: title, 
-            desc: desc,
+            description: description,
             category: category,
             // files: files,
         });
@@ -95,52 +95,54 @@ const newAnonQuery = async (req, res) => {
 
 //Only difference is this authenticates the user
 const newRegisteredQuery = async (req, res) => {
-    const { user, name, email, phone_no, gender,
-        dob, age, married, education, address,
-        city, state, title, desc, category, 
+    const {victimName, email, phone, gender,
+        dob, maritalStatus, education, address,
+        city, state, title, description, category, 
     } = req.body;
 
-    const session = await mongoose.startSession();
-    session.startTransaction();
+    // const session = await mongoose.startSession();
+    // session.startTransaction();
+    // console.log(req.user);
+    // console.log(req.user.id);
 
     try {
         const newQuery = new Query({
-            user_id: user.id,
-            name: name, 
+            user_id: req.user.id,
+            name: victimName, 
             gender: gender,
             email: email,
-            phone_no: phone_no,
+            phone: phone,
             dob: dob,
-            age: age,
-            married: married,
+            marital: maritalStatus,
             education: education,
             address: address,
             city: city,
             state: state,
 
             title: title, 
-            desc: desc,
+            description: description,
             category: category,
             // files: files,
         });
-        await newQuery.save({ session });
+        await newQuery.save();
+        // await newQuery.save({ session });
 
         
-        await User.findByIdAndUpdate(
-            user.role,
-            { $push: { queries: { $each: [newQuery._id], $position: 0 }}}, 
-            { session }
-        );
+        // await User.findByIdAndUpdate(
+        //     req.user.id,
+        //     { $push: { queries: { $each: [newQuery._id], $position: 0 }}}, 
+        //     // { session }
+        // );
         
-        await session.commitTransaction();
+        // await session.commitTransaction();
         res.status(201).send('Query created');
 
     } catch (error) {
-        await session.abortTransaction();
+        // await session.abortTransaction();
         console.error(error);
         res.status(500).send('Error creating query');
     } finally {
-        session.endSession();
+        // session.endSession();
     }
 }
 
@@ -228,9 +230,31 @@ const getQueriesFromRole = async(req, res)=>{
     }
 }
 
+/*     {
+        "title": "Minor Girl being forcibly married",
+        "category": "Child Marriage",
+        "description": "Attend to the immediate requirements of new project planning.",
+        "name": "hello",
+        "gender": "Male",
+        "dob": "27-01-2001",
+        "phone": "aaa",
+        "email": "mail",
+        "marital": "married",
+        "education": "edu",
+        "address": "address",
+        "city": "city"
+    }, */
+
 const getUserQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"user_id" : req.user.id},{title:1, category:1, desc:1})
+        const result = await Query.find({"user_id" : req.user.id},
+            {
+                title:1, category:1, description:1, 
+                name:1, gender:1, dob:1, phone:1,
+                email:1, marital:1, education:1,
+                address:1, city:1, _id: 1
+            })
+        // console.log(result);
         res.status(200).send(result); 
     } catch(error){
         console.error(error);
@@ -240,7 +264,7 @@ const getUserQueries = async(req, res)=>{
 
 const getAssignedQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"assignedTo" : req.user.id},{title:1, category:1, desc:1})
+        const result = await Query.find({"assignedTo" : req.user.id},{title:1, category:1, description:1})
         res.status(200).send(result); 
     } catch(error){
         console.error(error);
@@ -250,7 +274,7 @@ const getAssignedQueries = async(req, res)=>{
 
 const getPendingQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"history.0.assignedToRole" : req.user.role, "assignedTo" : null},{title:1, category:1, desc:1})
+        const result = await Query.find({"history.0.assignedToRole" : req.user.role, "assignedTo" : null},{title:1, category:1, description:1})
         res.status(200).send(result); 
     } catch(error){
         console.error(error);
@@ -259,22 +283,30 @@ const getPendingQueries = async(req, res)=>{
 }
 
 const updateUserDetails = async(req,res)=>{
-    const {name, email, phone_no, address,
-        password, gender, education, married
+    const {name, email, phone, address,
+        password, gender, education, marital
     }= req.body;
 
     try{
-        const hashedPassword = await bcrypt.hash(password, 10);
-        await Query.findByIdAndUpdate(req.user.id,{
-            name: name,
-            email: email,
-            phone_no: phone_no,
-            address: address,
-            password: hashedPassword,
-            gender: gender,
-            education: education,
-            married: married
-        })
+        // console.log(req.user);
+        // const hashedPassword = await bcrypt.hash(password, 10);
+        const updateData = {};
+        if (name) updateData.name = name;
+        if (email) updateData.email = email;
+        if (phone) updateData.phone = phone;
+        if (address) updateData.address = address;
+        if (gender) updateData.gender = gender;
+        if (education) updateData.education = education;
+        if (marital) updateData.marital = marital;
+
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            updateData.password = hashedPassword;
+        }
+        // console.log(updateData);
+        
+        await User.findByIdAndUpdate(req.user.id, updateData)
+        // console.log(result);
         res.status(200).send("Updated user details"); 
     } catch(error){
         console.error(error);
@@ -282,7 +314,40 @@ const updateUserDetails = async(req,res)=>{
     }
 }
 
-module.exports = {register, login, 
+const getUserDetails = async(req, res)=>{
+    try{
+        const status = await User.findById(req.user.id, 
+            { 
+                usercode : 1,
+                name: 1,
+                gender: 1,
+                dob: 1,
+                email: 1,
+                phone: 1,
+                education: 1,
+                marital: 1,
+                address: 1,
+            }
+        );
+        res.status(200).send(status);
+    } catch (error){
+        console.error(error);
+        res.status(500).send('Error getting user details');
+    } 
+}
+
+// const deleteQuery = async(req,res)=>{
+
+//     try{
+
+//     } catch(error){
+//         console.error(error);
+//         res.status(500).send('Error updating user details');
+//     }
+// }
+
+module.exports = {register, login, updateUserDetails,
     newAnonQuery, newRegisteredQuery, 
     getQueriesFromRole, getUserQueries, getAssignedQueries, getPendingQueries, getQueryStatus,
-    acceptQuery, resolveQuery, rejectQuery, sendQueryToRole, };
+    acceptQuery, resolveQuery, rejectQuery, sendQueryToRole, 
+    getUserDetails};

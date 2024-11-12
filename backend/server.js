@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/mydb');   // Import the connectDB function
 const routes = require('./routes/routes');
+const { generateToken } = require('./auth');
 
 // Initialize Express app
 const app = express();
@@ -31,4 +32,5 @@ app.use((err, req, res, next) => {
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    // console.log(generateToken({id:"teest", role:"user"}))
 });

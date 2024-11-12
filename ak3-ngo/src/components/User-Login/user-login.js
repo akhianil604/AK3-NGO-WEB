@@ -1,8 +1,50 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link , useNavigate} from "react-router-dom";
 import '../login.css';
 
 function UserLogin() {
+
+    const navigate = useNavigate();
+
+    const [loginData, setLoginData] = useState({
+        usercode: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginData({
+          ...loginData,
+          [name]: value,
+        });
+    };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData), 
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();  
+                throw new Error(errorText);
+            }
+    
+            const result = await response.json(); 
+            sessionStorage.setItem('authToken', result.token)
+            // sessionStorage.setItem('userid', loginData.usercode)
+            console.log('Success:', result);
+            navigate('/user');
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className="user-background"
             style={{
@@ -23,15 +65,19 @@ function UserLogin() {
                 <form className="user-portal-login-form">
                     <div className="uplf1">
                         <label htmlFor="ID">ID:</label>
-                        <input type="text" id="ID" name="ID" placeholder="ID given by the NGO" required />
+                        <input type="text" id="ID" name="usercode" placeholder="ID given by the NGO" required 
+                        value={loginData.usercode}
+                        onChange={handleChange}/>
                     </div>
 
                     <div className="uplf2">
                         <label htmlFor="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Password used during sign-up" required />
+                        <input type="password" id="password" name="password" placeholder="Password used during sign-up" required 
+                        value={loginData.password}
+                        onChange={handleChange}/>
                     </div>
 
-                    <button type="submit" className="login-btn-u">Sign In</button>
+                    <button type="submit" className="login-btn-u" onClick={handleSubmit}>Sign In</button>
                 </form>
             </section>
         </div>

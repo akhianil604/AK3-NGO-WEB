@@ -1,49 +1,115 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate} from "react-router-dom";
 import './User-Portal.css'
 import RegisterPlea from "../Register-Plea";
 import TasksContainer from "../Task-Container";
 
 const UserPortal = ()=>{
+
+  const navigate = useNavigate();
   
-  const [MyQueries, setMyQueries] = useState([
-    {
-        "title": "Minor Girl being forcibly married",
-        "category": "Child Marriage",
-        "description": "Attend to the immediate requirements of new project planning.",
-        "name": "hello",
-        "gender": "Male",
-        "dob": "27-01-2001",
-        "phone": "aaa",
-        "email": "mail",
-        "marital": "married",
-        "education": "edu",
-        "address": "address",
-        "city": "city"
-    },
-    {
-        "title": "News about transaction of individuals",
-        "category": "Women & Children Trafficking",
-        "description": "Finalize the proposals and funding reports.",
-        "name": "hello",
-        "gender": "Male",
-        "dob": "27-01-2001",
-        "phone": "aaa",
-        "email": "mail",
-        "marital": "married",
-        "education": "edu",
-        "address": "address",
-        "city": "city"
-    }]);
+  const [userData, setUserData] = useState({ 
+      usercode : '',
+      name: '',
+      gender: '',
+      dob: '',
+      email: '',
+      phone: '',
+      education: '',
+      marital: '',
+      address: '',
+  });
+
+  const [userFormData, setUserFormData] = useState({ 
+    name: '',
+    gender: '',
+    dob: '',
+    email: '',
+    phone: '',
+    education: '',
+    marital: '',
+    address: '',
+    password: ''
+  });
+  
+  const handleUserFormChange = (e) => {
+    const { name, value } = e.target;
+    setUserFormData({
+      ...userFormData,
+      [name]: value,
+    });
+  };
+
+  const handleUserFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = sessionStorage.getItem('authToken');
+      console.log("h");
+      const response = await fetch('http://localhost:5000/api/updateUserDetails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token ? `Bearer ${token}` : ''  
+        },
+        body: JSON.stringify(userFormData),  // Send user data as JSON
+      });
+
+      // Check if the response is okay
+      if (!response.ok) {
+        const errorText = await response.text();  // Get response text if there's an error
+        throw new Error(errorText);
+      }
+
+      const result = await response.text();  // Parse the JSON response
+      console.log('Success:', result);
+      alert('Saved new details');
+    } catch (error) {
+        console.error("Error: ",error);
+    }
+  };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('authToken');
+    fetch('http://localhost:5000/api/getUserDetails', {
+        method: 'GET', 
+        headers: {
+            'Content-Type': 'application/json',  
+            'Authorization': token ? `Bearer ${token}` : ''  
+        }
+    })
+    .then(response => response.json())
+    .then(userDetails => {
+        setUserData(userDetails);
+        setUserFormData({ 
+          name: userDetails.name,
+          gender: userDetails.gender,
+          dob: userDetails.dob,
+          email: userDetails.email,
+          phone: userDetails.phone,
+          education: userDetails.education,
+          marital: userDetails.marital,
+          address: userDetails.address,
+          password: ''
+        })
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  }, []);
+  // console.log(userData)
+
+  const [MyQueries, setMyQueries] = useState([]);
 
     
-/*   useEffect(() => {
+  useEffect(() => {
+    const token = sessionStorage.getItem('authToken');
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/getQueriesFromRole', {
-          method: 'GET', // The default method is 'GET', so this can be omitted if not changing
+        const response = await fetch('http://localhost:5000/api/getUserQueries', {
+          method: 'GET',
           headers: {
-            'Content-Type': 'application/json', // Add any other headers you need
-            'Authorization': `Bearer ${localStorage.token}`, // Add your token here
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${token}`, 
           },
         });
 
@@ -54,12 +120,14 @@ const UserPortal = ()=>{
         const result = await response.json();
         setMyQueries(result);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error(error);
       }
     };
 
     fetchData();
-  }, []); */
+  }, []); 
+
+  
 
   const [activeSection, setActiveSection] = useState('Profile')
 
@@ -90,49 +158,52 @@ const UserPortal = ()=>{
       <nav>
         <ul>
           <li>
-            <a href="#" className="logo">
-              <span className="nav-item">USR54132</span>
-            </a>
+            <div className="logo">
+              <span className="nav-item">{userData.usercode}</span>
+            </div>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("RegisterPlea")}>
+            <button onClick={() => setActiveSection("RegisterPlea")}>
               <i class="fa fa-home"></i>
               <span className="nav-item" id="Register-Plea">
                 Register A Plea
               </span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Assigned")}>
+            <button onClick={() => setActiveSection("Assigned")}>
               <i class="fa fa-check-circle" aria-hidden="true"></i>
               <span className="nav-item" id="My-Query">
                 My Queries
               </span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("HowToUse")}>
+            <button onClick={() => setActiveSection("HowToUse")}>
               <i class="fa fa-question-circle"></i>
               <span className="nav-item">How to Use?</span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Profile")}>
+            <button onClick={() => setActiveSection("Profile")}>
               <i class="fa fa-user-secret" aria-hidden="true"></i>
               <span className="nav-item">My Profile</span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Settings")}>
+            <button onClick={() => setActiveSection("Settings")}>
               <i class="fa fa-cog"></i>
               <span className="nav-item">Settings</span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" className="logout">
+            <button className="logout" onClick={()=>{
+              sessionStorage.clear();
+              navigate('/');
+            }}>
               <i class="fa fa-sign-out" aria-hidden="true"></i>
               <span className="nav-item">Logout</span>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
@@ -141,7 +212,7 @@ const UserPortal = ()=>{
         <RegisterPlea MyQueries={MyQueries} setMyQueries={setMyQueries} />
       </section>
       <section className={activeSection === 'Assigned' ? 'page-active' : 'page-hidden'} id="Assigned">
-        <TasksContainer tasks={MyQueries}/>
+        <TasksContainer tasks={MyQueries} role="user"/>
       </section>
       <section className={activeSection === 'HowToUse' ? 'page-active' : 'page-hidden'} id="HowToUse">
         <div className="home-use">  
@@ -152,21 +223,14 @@ const UserPortal = ()=>{
               <p class="task-category">
                 <strong>Category:</strong>Category Name
               </p>
-              <button class="accept-btn">Resolved</button>
-              <button class="reject-btn">Decline</button>
+              <button class="delete-btn">Delete</button>
               <button class="view-more-btn">View More</button>
             </div>
           </div>
           <div id="Accept">
-            <button class="accept-btn">Resolved</button>
+            <button class="delete-btn">Delete</button>
             <p>
               Case <strong>Resolved</strong>
-            </p>
-          </div>
-          <div id="Reject">
-            <button class="reject-btn">Decline</button>
-            <p>
-              Sends Query back to <strong>Pending Tasks</strong>
             </p>
           </div>
           <div id="View-More">
@@ -182,8 +246,8 @@ const UserPortal = ()=>{
         <div className="wrapper">
           <div className="left">
             <i class="fa fa-users" aria-hidden="true"></i>
-            <h4>Divya</h4>
-            <p>USR54132</p>
+            <h4>{userData.name}</h4>
+            <p>{userData.usercode}</p>
           </div>
           <div className="right">
             <div class="info">
@@ -191,31 +255,31 @@ const UserPortal = ()=>{
               <div class="info_data">
                 <div class="data">
                   <h4>Name:</h4>
-                  <p>Smile Foundation</p>
+                  <p>{userData.name}</p>
                 </div>
                 <div class="data">
                   <h4>Date of Birth:</h4>
-                  <p>22-09-1998</p>
+                  <p>{new Date(userData.dob).toLocaleDateString('en-GB')}</p>
                 </div>
                 <div class="data">
                   <h4>Email:</h4>
-                  <p>alex@gmail.com</p>
+                  <p>{userData.email}</p>
                 </div>
                 <div class="data">
                   <h4>Phone:</h4>
-                  <p>0001-0453-2423</p>
+                  <p>{userData.phone}</p>
                 </div>
                 <div class="data">
                   <h4>Gender:</h4>
-                  <p>F</p>
+                  <p>{userData.gender}</p>
                 </div>
                 <div class="data">
                   <h4>Educational Qualification:</h4>
-                  <p>Undergraduate</p>
+                  <p>{userData.education}</p>
                 </div>
                 <div class="data">
                   <h4>Marital Status:</h4>
-                  <p>Unmarried</p>
+                  <p>{userData.marital}</p>
                 </div>
               </div>
             </div>
@@ -228,20 +292,19 @@ const UserPortal = ()=>{
           <form id="settingsForm">
             <div className="form-group">
               <label htmlFor="name">Name:</label>
-              <input type="text" id="name" value="Smile Foundation" />
+              <input type="text" id="name" name="name" value={userFormData.name}  onChange={handleUserFormChange}/>
             </div>
             <div class="form-group">
               <label htmlFor="email">Email:</label>
-              <input type="email" id="email" value="alex@gmail.com" />
+              <input type="email" id="email" name="email" value={userFormData.email}  onChange={handleUserFormChange} />
             </div>
             <div class="form-group">
               <label htmlFor="phone">Phone:</label>
-              <input type="text" id="phone" value="0001-0453-2423" />
+              <input type="text" id="phone" name="phone" value={userFormData.phone}  onChange={handleUserFormChange} />
             </div>
             <div class="form-group">
               <label htmlFor="address">Address:</label>
-              <textarea id="address">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <textarea id="address" name = "address" value={userFormData.address} onChange={handleUserFormChange}>
               </textarea>
             </div>
             <div class="form-group">
@@ -250,19 +313,22 @@ const UserPortal = ()=>{
                 type="password"
                 id="password"
                 placeholder="Enter new password"
+                name="password"
+                value={userFormData.password}
+                onChange={handleUserFormChange}
               />
             </div>
             <div class="form-group">
               <label htmlFor="gender">Gender:</label>
-              <select id="gender">
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-                <option value="O">Other</option>
+              <select id="gender" name="gender" value={userFormData.gender} onChange={handleUserFormChange}>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <div class="form-group">
               <label htmlFor="marital-status">Marital Status:</label>
-              <select id="marital-status">
+              <select id="marital-status" name="marital" value={userFormData.marital} onChange={handleUserFormChange}>
                 <option value="Unmarried">Unmarried</option>
                 <option value="Married">Married</option>
                 <option value="Minor">Minor</option>
@@ -270,16 +336,18 @@ const UserPortal = ()=>{
             </div>
             <div class="form-group">
               <label htmlFor="education">Educational Qualification:</label>
-              <select id="education">
-                <option value="Undergraduate">Undergraduate</option>
-                <option value="Postgraduate">Postgraduate</option>
-                <option value="Doctorate">Doctorate</option>
+              <select id="education" name="education" value={userFormData.education} onChange={handleUserFormChange}>
+                <option value="None">Schooling Not Completed</option>
+                <option value="Primary">10th Grade Pass</option>
+                <option value="Secondary">12th Grade Pass</option>
                 <option value="Diploma">Diploma</option>
+                <option value="UG">Undergraduate</option>
+                <option value="PG">Graduate/Postgraduate</option>
               </select>
             </div>
             {/* Add remaining settings form fields */}
             <div class="form-group">
-              <button type="button" onClick={() => alert("Changes saved!")}>
+              <button type="button" onClick={handleUserFormSubmit}>
                 Save Changes
               </button>
             </div>

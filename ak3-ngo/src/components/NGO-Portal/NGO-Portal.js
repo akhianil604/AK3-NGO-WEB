@@ -102,49 +102,49 @@ const NGOPortal = ()=>{
       <nav>
         <ul>
           <li>
-            <a href="#" className="logo">
+            <div className="logo">
               <span className="nav-item">NGO54132</span>
-            </a>
+            </div>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Pending")}>
+            <button onClick={() => setActiveSection("Pending")}>
               <i class="fa fa-home"></i>
               <span className="nav-item" id="Pending-Query">
                 Pending Queries
               </span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Assigned")}>
+            <button onClick={() => setActiveSection("Assigned")}>
               <i class="fa fa-check-circle" aria-hidden="true"></i>
               <span className="nav-item" id="My-Query">
                 My Queries
               </span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("HowToUse")}>
+            <button onClick={() => setActiveSection("HowToUse")}>
               <i class="fa fa-question-circle"></i>
               <span className="nav-item">How to Use?</span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Profile")}>
+            <button onClick={() => setActiveSection("Profile")}>
               <i class="fa fa-user-secret" aria-hidden="true"></i>
               <span className="nav-item">My Profile</span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" onClick={() => setActiveSection("Settings")}>
+            <button onClick={() => setActiveSection("Settings")}>
               <i class="fa fa-cog"></i>
               <span className="nav-item">Settings</span>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#" className="logout">
+            <button className="logout">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
               <span className="nav-item">Logout</span>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

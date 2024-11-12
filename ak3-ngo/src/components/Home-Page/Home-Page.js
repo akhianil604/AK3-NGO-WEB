@@ -90,7 +90,6 @@ const HomePage = ()=>{
         }
     };
 
-    //Add handleUserDataSubmit with API
     const handleUserDataSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -278,20 +277,20 @@ const HomePage = ()=>{
                     <label>Gender:</label>
                         <div class="form-group"> 
                             <div>
-                                <input type="radio" id="male" name="gender" value="male"
-                                    checked={pleaData.gender === 'male'}
+                                <input type="radio" id="male" name="gender" value="Male"
+                                    checked={pleaData.gender === 'Male'}
                                     onChange={handlePleaChange}/>
                                 <label htmlFor="male">Male</label>
                             </div>
                             <div>
-                                <input type="radio" id="female" name="gender" value="female"
-                                    checked={pleaData.gender === 'female'}
+                                <input type="radio" id="female" name="gender" value="Female"
+                                    checked={pleaData.gender === 'Female'}
                                     onChange={handlePleaChange}/>
                                 <label htmlFor="female">Female</label>
                             </div>
                             <div>
-                                <input type="radio" id="others" name="gender" value="other"
-                                    checked={pleaData.gender === 'other'}
+                                <input type="radio" id="others" name="gender" value="Other"
+                                    checked={pleaData.gender === 'Other'}
                                     onChange={handlePleaChange}/>
                                 <label htmlFor="others">Others</label>
                             </div>
@@ -620,20 +619,20 @@ const HomePage = ()=>{
                     <label>Gender:</label>
                         <div class="user-signup2"> {/* <!--user-signup2-g--> */}
                             <div>
-                                <input type="radio" id="male" name="gender" value="male"
-                                    checked={userData.gender === "male"}
+                                <input type="radio" id="male" name="gender" value="Male"
+                                    checked={userData.gender === "Male"}
                                     onChange={handleUserDataChange}/>
                                 <label htmlFor="male">Male</label>
                             </div>
                             <div>
-                                <input type="radio" id="female" name="gender" value="female"
-                                    checked={userData.gender === "female"}
+                                <input type="radio" id="female" name="gender" value="Female"
+                                    checked={userData.gender === "Female"}
                                     onChange={handleUserDataChange}/>
                                 <label htmlFor="female">Female</label>
                             </div>
                             <div>
-                                <input type="radio" id="others" name="gender" value="other"
-                                    checked={userData.gender === "other"}
+                                <input type="radio" id="others" name="gender" value="Other"
+                                    checked={userData.gender === "Other"}
                                     onChange={handleUserDataChange}/>
                                 <label htmlFor="others">Others</label>
                             </div>
@@ -667,33 +666,33 @@ const HomePage = ()=>{
                             onChange={handleUserDataChange}>
 
                             <option value="" disabled selected>Select your qualification</option>
-                            <option value="school">Schooling Not Completed</option>
-                            <option value="10thpass">10th Grade Pass</option>
-                            <option value="12thpass">12th Grade Pass</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="undergrad">Undergraduate</option>
-                            <option value="postgrad">Graduate/Postgraduate</option>
-                        </select>
+                            <option value="None">Schooling Not Completed</option>
+                            <option value="Primary">10th Grade Pass</option>
+                            <option value="Secondary">12th Grade Pass</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="UG">Undergraduate</option>
+                            <option value="PG">Graduate/Postgraduate</option>
+                        </select> 
                     </div>
 
                     <label>Marital Status:</label>
                         <div class="user-signup2"> 
                             <div>
-                                <input type="radio" id="minor" name="maritalStatus" value="minor"
+                                <input type="radio" id="minor" name="maritalStatus" value="Minor"
                                     onChange={handleUserDataChange}
-                                    checked={userData.maritalStatus === "minor"}/>
+                                    checked={userData.maritalStatus === "Minor"}/>
                                 <label htmlFor="minor">Minor</label>
                             </div>
                             <div>
-                                <input type="radio" id="unmarried" name="maritalStatus" value="unmarried"
+                                <input type="radio" id="unmarried" name="maritalStatus" value="Unmarried"
                                     onChange={handleUserDataChange}
-                                    checked={userData.maritalStatus === 'unmarried'}/>
+                                    checked={userData.maritalStatus === 'Unmarried'}/>
                                 <label htmlFor="unmarried">Unmarried</label>
                             </div>
                             <div>
-                                <input type="radio" id="married" name="maritalStatus" value="married"
+                                <input type="radio" id="married" name="maritalStatus" value="Married"
                                     onChange={handleUserDataChange}
-                                    checked={userData.maritalStatus === 'married'}/>
+                                    checked={userData.maritalStatus === 'Married'}/>
                                 <label htmlFor="married">Married</label>
                             </div>
                         </div>
