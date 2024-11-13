@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function TasksContainer({ tasks, role }) {
+function TasksContainer({ tasks, page , handlers}) {
     const [modalData, setModalData] = useState(null);
     // console.log(role);
 
@@ -21,15 +21,31 @@ function TasksContainer({ tasks, role }) {
                     <h3 className="task-title">{task.title}</h3>
                     <p className="task-category"><strong>Category:</strong> {task.category}</p>
 
-                    {(role === "ngo" || role === "police") && (<>
-                        <button className="accept-btn">Accept</button>
-                        <button className="reject-btn">Reject</button>
+                    {(page === "ngo-pending" || page === "police-pending") && (<>
+                        <button className="accept-btn"
+                            onClick={()=>handlers.acceptQuery(task)}
+                            >Accept</button>
+                        <button className="reject-btn"
+                            onClick={()=>handlers.sendToAdmin(task)}
+                            >Return</button>
                         <button className="view-more-btn"
                             onClick={() => handleViewMoreClick(task)}>
                             View More
                         </button>
                     </>)}
-                    {role === "user" && (<>
+                    {(page === "ngo-assigned" || page === "police-assigned") && (<>
+                        <button className="accept-btn"
+                            onClick={()=>handlers.resolveQuery(task)}
+                            >Resolve</button>
+                        <button className="reject-btn"
+                            onClick={()=>handlers.rejectQuery(task)}
+                            >Reject</button>
+                        <button className="view-more-btn"
+                            onClick={() => handleViewMoreClick(task)}>
+                            View More
+                        </button>
+                    </>)}
+                    {page === "user" && (<>
                         <button className="delete-btn">Delete</button>
                         <button className="view-more-btn"
                             onClick={() => handleViewMoreClick(task)}>

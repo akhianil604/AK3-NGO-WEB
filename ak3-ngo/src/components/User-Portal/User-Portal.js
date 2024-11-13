@@ -44,7 +44,6 @@ const UserPortal = ()=>{
     e.preventDefault();
     try {
       const token = sessionStorage.getItem('authToken');
-      console.log("h");
       const response = await fetch('http://localhost:5000/api/updateUserDetails', {
         method: 'POST',
         headers: {
@@ -212,7 +211,7 @@ const UserPortal = ()=>{
         <RegisterPlea MyQueries={MyQueries} setMyQueries={setMyQueries} />
       </section>
       <section className={activeSection === 'Assigned' ? 'page-active' : 'page-hidden'} id="Assigned">
-        <TasksContainer tasks={MyQueries} role="user"/>
+        <TasksContainer tasks={MyQueries} page="user"/>
       </section>
       <section className={activeSection === 'HowToUse' ? 'page-active' : 'page-hidden'} id="HowToUse">
         <div className="home-use">  

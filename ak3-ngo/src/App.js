@@ -29,13 +29,13 @@ function App(){
         <Route path="/sister-ngo"
           element={
             <ProtectedRoute redirectPath="/sister-ngo/login" role='ngo'>
-              <UserPortal />
+              <NGOPortal />
             </ProtectedRoute>
         }/>
         <Route path="/police"
           element={
             <ProtectedRoute redirectPath="/police/login" role='police'>
-              <UserPortal />
+              <PolicePortal />
             </ProtectedRoute>
         }/>
       </Routes>

@@ -100,11 +100,6 @@ const newRegisteredQuery = async (req, res) => {
         city, state, title, description, category, 
     } = req.body;
 
-    // const session = await mongoose.startSession();
-    // session.startTransaction();
-    // console.log(req.user);
-    // console.log(req.user.id);
-
     try {
         const newQuery = new Query({
             user_id: req.user.id,
@@ -125,36 +120,29 @@ const newRegisteredQuery = async (req, res) => {
             // files: files,
         });
         await newQuery.save();
-        // await newQuery.save({ session });
-
-        
-        // await User.findByIdAndUpdate(
-        //     req.user.id,
-        //     { $push: { queries: { $each: [newQuery._id], $position: 0 }}}, 
-        //     // { session }
-        // );
-        
-        // await session.commitTransaction();
         res.status(201).send('Query created');
 
     } catch (error) {
-        // await session.abortTransaction();
         console.error(error);
         res.status(500).send('Error creating query');
-    } finally {
-        // session.endSession();
     }
 }
 
 const sendQueryToRole = async(req, res)=>{
     try{
-        const { queryId, targetRole, user } = req.body;
-        if(targetRole == "admin" && (user.role == "ngo" || user.role == "pol") ||
-        user.role == "admin" && (targetRole == "ngo" || targetRole == "pol") ){
+        const { queryId, targetRole } = req.body;
+        // console.log("Received targetRole:", targetRole);
+
+        if(targetRole === "admin" && (req.user.role === "ngo" || req.user.role === "police") ||
+        req.user.role === "admin" && (targetRole === "ngo" || targetRole === "police") ){
             await Query.findByIdAndUpdate(queryId, 
-                { $push: { history:{ timestamp: Date.now(), assignedtoRole: targetRole } },
+                { $push: { history: { 
+                    $each: [{ timestamp: Date.now(), assignedToRole: targetRole}], 
+                    $position: 0 
+                }},
                 $set: { status: "open", assignedTo: null }}
             )
+            res.status(200).send("Sent query");
         }
         else{
             res.status(400).send("Invalid roles");
@@ -178,9 +166,10 @@ const getQueryStatus = async(req, res)=>{
 
 const acceptQuery = async(req, res)=>{
     try{
-        const {queryId, user} = req.body;
-        if (await Query.findById(queryId) === user.role){
-            await Query.findByIdAndUpdate(queryId, {status: "assigned", assignedTo: user.role});
+        const {queryId} = req.body;
+        if (await Query.find({_id: queryId, "history.0.assignedToRole" : req.user.role})){
+            await Query.findByIdAndUpdate(queryId, {status: "assigned", assignedTo: req.user.id});
+            res.status(200).send('Updated query');
         }
     } catch (error){
         console.error(error);
@@ -191,9 +180,10 @@ const acceptQuery = async(req, res)=>{
 const resolveQuery = async(req, res)=>{
     try{
         const { queryId } = req.body;
-        const queryDoc = await Query.findById(queryId);
-        if (queryDoc.assignedTo === req.user.id){
+        // const queryDoc = await Query.findById(queryId);
+        if (await Query.find({_id: queryId, "history.0.assignedToRole" : req.user.role})){
             await Query.findByIdAndUpdate(queryId, {status: "resolved"});
+            res.status(200).send('Updated query');
         }
         else{
             res.status(401).send('User has not claimed query')
@@ -207,9 +197,11 @@ const resolveQuery = async(req, res)=>{
 const rejectQuery = async(req, res)=>{
     try{
         const { queryId } = req.body;
-        const queryDoc = await Query.findById(queryId);
-        if (queryDoc.assignedTo === req.user.id){
+        // const queryDoc = await Query.findById(queryId);
+        // if (queryDoc.assignedTo === req.user.id){
+        if (await Query.find({_id: queryId, "history.0.assignedToRole" : req.user.role})){
             await Query.findByIdAndUpdate(queryId, {status: "open", assignedTo: null}); 
+            res.status(200).send('Updated query');
         }
         else{
             res.status(401).send('User has not claimed query')
@@ -222,7 +214,12 @@ const rejectQuery = async(req, res)=>{
 
 const getQueriesFromRole = async(req, res)=>{
     try {
-        const result = await Query.find({"history.0.assignedToRole" : req.user.role},{title:1, category:1, desc:1})
+        const result = await Query.find({"history.0.assignedToRole" : req.user.role},{
+            title:1, category:1, description:1, 
+            name:1, gender:1, dob:1, phone:1,
+            email:1, marital:1, education:1,
+            address:1, city:1, _id: 1
+        })
         res.status(200).send(result); 
     } catch (error){
         console.error(error);
@@ -264,7 +261,13 @@ const getUserQueries = async(req, res)=>{
 
 const getAssignedQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"assignedTo" : req.user.id},{title:1, category:1, description:1})
+        const result = await Query.find({"assignedTo" : req.user.id},
+            {
+                title:1, category:1, description:1, 
+                name:1, gender:1, dob:1, phone:1,
+                email:1, marital:1, education:1,
+                address:1, city:1, _id: 1
+            })
         res.status(200).send(result); 
     } catch(error){
         console.error(error);
@@ -274,8 +277,15 @@ const getAssignedQueries = async(req, res)=>{
 
 const getPendingQueries = async(req, res)=>{
     try{
-        const result = await Query.find({"history.0.assignedToRole" : req.user.role, "assignedTo" : null},{title:1, category:1, description:1})
-        res.status(200).send(result); 
+        const result = await Query.find({"history.0.assignedToRole" : req.user.role, "assignedTo" : null},
+            {
+                title:1, category:1, description:1, 
+                name:1, gender:1, dob:1, phone:1,
+                email:1, marital:1, education:1,
+                address:1, city:1, _id: 1
+            })
+        res.status(200).send(result);
+        console.log("Sent result to client.");
     } catch(error){
         console.error(error);
         res.status(500).send('Error getting queries');

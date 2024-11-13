@@ -726,7 +726,7 @@ const HomePage = ()=>{
                             onChange={handleUserDataChange}/>
                     </div>
                     
-                    <button type="submit" class="login-btn" onClick={handleUserDataSubmit}>Login</button>
+                    <button type="submit" class="login-btn" onClick={handleUserDataSubmit}>Sign up</button>
                     
                     
                 </form>

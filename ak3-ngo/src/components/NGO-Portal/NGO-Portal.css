@@ -261,6 +261,7 @@ body{
     margin-top: 5rem;
     background-color: blue;
     color: white;
+    border-radius: 10px;
 }
 
 .NGOPortalContainer .home-use{
@@ -600,3 +601,8 @@ userPortalContainer .close:hover,
 .NGOPortalContainer .main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
     background: #019d9b;
 }
+
+.NGOPortalContainer button {
+    align-self: center;
+    font-size: 1rem;
+} 

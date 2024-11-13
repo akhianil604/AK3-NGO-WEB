@@ -1,8 +1,50 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate} from "react-router-dom";
 import '../login.css';
 
 function SisterLogin() {
+
+    const navigate = useNavigate();
+
+    const [loginData, setLoginData] = useState({
+        usercode: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginData({
+          ...loginData,
+          [name]: value,
+        });
+    };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData), 
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();  
+                throw new Error(errorText);
+            }
+    
+            const result = await response.json(); 
+            sessionStorage.setItem('authToken', result.token)
+            // sessionStorage.setItem('userid', loginData.usercode)
+            console.log('Success:', result);
+            navigate('/sister-ngo');
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className="sister-background" 
             style={{
@@ -23,15 +65,19 @@ function SisterLogin() {
                 <form className="sister-portal-login-form">
                     <div className="splf1">
                         <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" name="username" placeholder="Username" required />
+                        <input type="text" id="username" name="usercode" placeholder="Username" required
+                        value={loginData.usercode}
+                        onChange={handleChange}/>
                     </div>
 
                     <div className="splf2">
                         <label htmlFor="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Password" required />
+                        <input type="password" id="password" name="password" placeholder="Password" required 
+                        value={loginData.password}
+                        onChange={handleChange}/>
                     </div>
 
-                    <button type="submit" className="login-btn-s">Sign In</button>
+                    <button type="submit" className="login-btn-s" onClick={handleSubmit}>Sign In</button>
                 </form>
             </section>
         </div>

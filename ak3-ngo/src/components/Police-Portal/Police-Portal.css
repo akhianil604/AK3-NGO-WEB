@@ -262,6 +262,7 @@ body{
     margin-top: 5rem;
     background-color: blue;
     color: white;
+    border-radius: 10px;
 }
 
 .policePortalContainer .home-use{
@@ -445,11 +446,12 @@ body{
 
 .policePortalContainer .wrapper .right .info, .policePortalContainer .wrapper .right .projects{
     margin-bottom: 2.5rem;
+    margin-top: 1.5rem;
 }
 
 .policePortalContainer .wrapper .right .info h3, .policePortalContainer .wrapper .right .projects h3{
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #e0e0e0;
     color: #353c4e;
@@ -525,10 +527,11 @@ userPortalContainer .close:hover,
 
 .policePortalContainer .wrapper-settings {
     position: absolute;
-    margin-top: 30rem;
+    /* margin-top: 30rem; */
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 60rem;
+    height: auto;
     margin-left: 5rem;
     width: 40rem;
     display: flex;
@@ -601,3 +604,8 @@ userPortalContainer .close:hover,
 .policePortalContainer .main-skills .task-block-card .view-more-btn:hover , .view-more-btn:hover{
     background: #019d9b;
 }
+
+.policePortalContainer button {
+    align-self: center;
+    font-size: 1rem;
+} 
