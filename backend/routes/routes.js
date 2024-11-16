@@ -24,7 +24,7 @@ router.post('/acceptQuery', auth.authenticateToken, controllers.acceptQuery);
 router.post('/resolveQuery', auth.authenticateToken, controllers.resolveQuery);
 router.post('/rejectQuery', auth.authenticateToken, controllers.rejectQuery);
 router.post('/sendQueryToRole', auth.authenticateToken, controllers.sendQueryToRole);
-// router.post('/deleteQuery', auth.authenticateToken, controllers.deleteQuery);
+router.post('/deleteQuery', auth.authenticateToken, controllers.deleteQuery);
 
 router.get('/getUserDetails', auth.authenticateToken, controllers.getUserDetails);
 

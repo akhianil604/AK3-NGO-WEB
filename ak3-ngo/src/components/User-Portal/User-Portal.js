@@ -63,7 +63,7 @@ const UserPortal = ()=>{
       console.log('Success:', result);
       alert('Saved new details');
     } catch (error) {
-        console.error("Error: ",error);
+        alert("Error: ",error);
     }
   };
 
@@ -92,7 +92,7 @@ const UserPortal = ()=>{
         })
     })
     .catch(error => {
-      console.error('Error fetching data:', error);
+      alert('Error fetching data:', error);
     });
   }, []);
   // console.log(userData)
@@ -119,7 +119,7 @@ const UserPortal = ()=>{
         const result = await response.json();
         setMyQueries(result);
       } catch (error) {
-        console.error(error);
+        alert(error);
       }
     };
 

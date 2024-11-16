@@ -167,6 +167,22 @@ body{
     width:auto;
 }
 
+.userPortalContainer .checkbox-group {
+    gap: 2rem; 
+    /* margin-top: 0.5rem; */
+}
+
+.userPortalContainer .checkbox-group label {
+    align-items: center;
+    gap: 5rem;
+    margin-left: 2rem;
+}
+
+.userPortalContainer .checkbox-group input[type="checkbox"] {
+    width:auto;
+    margin-left: 2rem;
+}
+
 .userPortalContainer .form-group label {
     margin-bottom: 0.5rem;
     color: #353c4e;

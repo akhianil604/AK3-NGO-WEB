@@ -36,7 +36,7 @@ const register = async (req, res) => {
                 state: state,
             });
             await newUser.save();
-            res.status(201).send({token: auth.generateToken(newUser)});
+            res.status(201).send({usercode: usercode,token: auth.generateToken(newUser)});
         }
     } catch (error) {
         console.error(error);
@@ -45,12 +45,12 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const { usercode, password } = req.body;
+    const { usercode, password, role } = req.body;
 
     try {
-        const user = await User.findOne({ usercode:  usercode });
+        const user = await User.findOne({ usercode:  usercode, role: role });
         if (user && await bcrypt.compare(password, user.password)) {
-            res.send({token: auth.generateToken(user)}); // This should be stored in localstorage on frontend
+            res.send({token: auth.generateToken(user)}); 
         } else {
             res.status(401).send('Invalid credentials'); 
         }
@@ -62,8 +62,8 @@ const login = async (req, res) => {
 
 const newAnonQuery = async (req, res) => {
     const { name, email, phone, gender,
-        dob, marital, education, address,
-        city, state, title, description, category, 
+        dob, maritalStatus, education, address,
+        city, state, plea, description, category, 
      } = req.body;
 
     try {
@@ -73,13 +73,13 @@ const newAnonQuery = async (req, res) => {
             email: email,
             phone: phone,
             dob: dob,
-            marital: marital,
+            marital: maritalStatus,
             education: education,
             address: address,
             city: city,
             state: state,
 
-            title: title, 
+            title: plea, 
             description: description,
             category: category,
             // files: files,
@@ -285,7 +285,7 @@ const getPendingQueries = async(req, res)=>{
                 address:1, city:1, _id: 1
             })
         res.status(200).send(result);
-        console.log("Sent result to client.");
+        // console.log("Sent result to client.");
     } catch(error){
         console.error(error);
         res.status(500).send('Error getting queries');
@@ -346,18 +346,25 @@ const getUserDetails = async(req, res)=>{
     } 
 }
 
-// const deleteQuery = async(req,res)=>{
+const deleteQuery = async(req,res)=>{
 
-//     try{
+    try{
+        const {queryId} = req.body;
+        if (req.user.role === "admin" &&
+        await Query.find({_id: queryId, "history.0.assignedToRole" : req.user.role})
+        || req.user.role === "user" && await Query.find({_id: queryId, user_id : req.user.id})){
 
-//     } catch(error){
-//         console.error(error);
-//         res.status(500).send('Error updating user details');
-//     }
-// }
+            await Query.findByIdAndDelete(queryId);
+            res.status(200).send('Deleted query');
+        }
+    } catch(error){
+        console.error(error);
+        res.status(500).send('Error deleting query');
+    }
+}
 
 module.exports = {register, login, updateUserDetails,
     newAnonQuery, newRegisteredQuery, 
     getQueriesFromRole, getUserQueries, getAssignedQueries, getPendingQueries, getQueryStatus,
-    acceptQuery, resolveQuery, rejectQuery, sendQueryToRole, 
+    acceptQuery, resolveQuery, rejectQuery, deleteQuery, sendQueryToRole, 
     getUserDetails};

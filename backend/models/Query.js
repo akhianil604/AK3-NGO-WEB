@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const querySchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    category: { type: String, enums: ["harrassment", "forced_labor", 
-        "human_trafficking", "child_marraige", "domestic_violence", 
-        "dowry", "rehabilitation"], required: true },
+    category: [{ type: String, enum: ["Harrassment", "Forced Labor", 
+        "Human Trafficking", "Child Marriage", "DOmestic Violence", 
+        "Dowry", "Rehabilitation"], required: true }],
     // files: [{
     //     data: { type: Buffer, required: true }, 
     //     contentType: { type: String, required: true }, 

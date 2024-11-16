@@ -4,7 +4,7 @@ import './NGO-Portal.css'
 import "../Register-Plea";
 import TasksContainer from "../Task-Container";
 
-const PolicePortal = () => {
+const NGOPortal = () => {
 
     const navigate = useNavigate();
 
@@ -67,7 +67,7 @@ const PolicePortal = () => {
             console.log('Success:', result);
             alert('Saved new details');
         } catch (error) {
-            console.error("Error: ", error);
+            alert("Error: ", error);
         }
     };
 
@@ -96,7 +96,7 @@ const PolicePortal = () => {
                 })
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
+                alert('Error fetching data:', error);
             });
     }, []);
 
@@ -120,7 +120,7 @@ const PolicePortal = () => {
                 const result = await response.json();
                 setPendingQueries(result);
             } catch (error) {
-                console.error(error);
+                alert(error);
             }
         };
 
@@ -146,7 +146,7 @@ const PolicePortal = () => {
                 const result = await response.json();
                 setMyQueries(result);
             } catch (error) {
-                console.error(error);
+                alert(error);
             }
         };
 
@@ -175,7 +175,7 @@ const PolicePortal = () => {
             setPendingQueries(prevQueries => prevQueries.filter(query => query._id !== task._id));
 
         } catch (error) {
-            console.error('Error occurred:', error);
+            alert('Error occurred:', error);
         }
     };
 
@@ -200,7 +200,7 @@ const PolicePortal = () => {
             setPendingQueries(prevQueries => prevQueries.filter(query => query._id !== task._id));
 
         } catch (error) {
-            console.error('Error occurred:', error);
+            alert('Error occurred:', error);
         }
     };
 
@@ -225,7 +225,7 @@ const PolicePortal = () => {
             setMyQueries(prevQueries => prevQueries.filter(query => query._id !== task._id));
 
         } catch (error) {
-            console.error('Error occurred:', error);
+            alert('Error occurred:', error);
         }
     };
 
@@ -251,7 +251,7 @@ const PolicePortal = () => {
             setMyQueries(prevQueries => prevQueries.filter(query => query._id !== task._id));
 
         } catch (error) {
-            console.error('Error occurred:', error);
+            alert('Error occurred:', error);
         }
     };
 
@@ -477,4 +477,4 @@ const PolicePortal = () => {
     );
 }
 
-export default PolicePortal;
+export default NGOPortal;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate} from "react-router-dom";
 import '../login.css';
 
@@ -27,7 +27,7 @@ function SisterLogin() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(loginData), 
+                body: JSON.stringify({...loginData, role: "ngo"}), 
             });
 
             if (!response.ok) {
@@ -42,6 +42,7 @@ function SisterLogin() {
             navigate('/sister-ngo');
         } catch (error) {
             console.error(error);
+            alert(error);
         }
     };
 

@@ -19,7 +19,7 @@ function TasksContainer({ tasks, page , handlers}) {
             {tasks.map((task) => (
                 <div key={task._id} className="task-block-card">
                     <h3 className="task-title">{task.title}</h3>
-                    <p className="task-category"><strong>Category:</strong> {task.category}</p>
+                    <p className="task-category"><strong>Category:</strong> {task.category.join(", ")}</p>
 
                     {(page === "ngo-pending" || page === "police-pending") && (<>
                         <button className="accept-btn"
@@ -33,7 +33,7 @@ function TasksContainer({ tasks, page , handlers}) {
                             View More
                         </button>
                     </>)}
-                    {(page === "ngo-assigned" || page === "police-assigned") && (<>
+                    {(page === "ngo-assigned" || page === "police-assigned" || page === "admin-assigned") && (<>
                         <button className="accept-btn"
                             onClick={()=>handlers.resolveQuery(task)}
                             >Resolve</button>
@@ -46,7 +46,29 @@ function TasksContainer({ tasks, page , handlers}) {
                         </button>
                     </>)}
                     {page === "user" && (<>
-                        <button className="delete-btn">Delete</button>
+                        <button className="delete-btn"
+                            onClick={()=>handlers.deleteQuery(task)}
+                            >Delete</button>
+                        <button className="view-more-btn"
+                            onClick={() => handleViewMoreClick(task)}>
+                            View More
+                        </button>
+                    </>)}
+                    {page === "admin-pending" && (<>
+                        <button className="send-police-btn"
+                            onClick={() => handlers.sendToPolice(task)}>
+                            Send to Police
+                        </button>
+                        <button className="send-ngo-btn"
+                            onClick={() => handlers.sendToNGO(task)}>
+                            Send to NGO
+                        </button>
+                        <button className="accept-btn"
+                            onClick={()=>handlers.acceptQuery(task)}
+                            >Accept</button>
+                        <button className="delete-btn"
+                            onClick={()=>handlers.deleteQuery(task)}
+                            >Delete</button>
                         <button className="view-more-btn"
                             onClick={() => handleViewMoreClick(task)}>
                             View More
@@ -65,11 +87,11 @@ function TasksContainer({ tasks, page , handlers}) {
                         <p id="modalDescriptionValue"><strong>Description:</strong> {modalData.description}</p> */}
                         <span class="close" onClick={closeModal}>&times;</span>
                         <h2 id="modalTitle">{modalData.title}</h2>
-                        <p id="modalCategory"><strong>Category: </strong><span id="modalCategoryValue">{modalData.category}</span></p>
+                        <p id="modalCategory"><strong>Categories: </strong><span id="modalCategoryValue">{modalData.category.join(", ")}</span></p>
                         <p id="modalDescription"><strong>Description: </strong><span id="modalDescriptionValue">{modalData.description}</span></p>
                         <p id="modalName"><strong>Name: </strong><span id="modalNameValue">{modalData.name}</span></p>
                         <p id="modalGender"><strong>Gender: </strong><span id="modalGenderValue">{modalData.gender}</span></p>
-                        <p id="modalDOB"><strong>DOB: </strong><span id="modalDOBValue">{modalData.dob}</span></p>
+                        <p id="modalDOB"><strong>DOB: </strong><span id="modalDOBValue">{new Date(modalData.dob).toLocaleDateString('en-GB')}</span></p>
                         <p id="modalPhone"><strong>Phone: </strong><span id="modalPhoneValue">{modalData.phone}</span></p>
                         <p id="modalEmail"><strong>Email: </strong><span id="modalEmailValue">{modalData.email}</span></p>
                         <p id="modalMarital"><strong>Marital Status: </strong><span id="modalMaritalValue">{modalData.marital}</span></p>

@@ -8,7 +8,7 @@ const HomePage = ()=>{
     const [pleaData, setPleaData] = useState({
         name: '',
         gender: '',
-        DOB: '',
+        dob: '',
         email: '',
         phone: '',
         education: '',
@@ -16,17 +16,19 @@ const HomePage = ()=>{
         address: '',
         city: '',
         state: '',
-        categories: [],
+        category: [],
         plea: '',
         description: '',
     }) 
 
     const handlePleaChange = (e) => {
         const { name, value } = e.target;
-        if(name === "categories"){
+        if(name === "category"){
             setPleaData(prevState => ({
                 ...prevState,
-                [name]: [...prevState[name], value]
+                [name]: prevState[name].includes(value)
+                    ? prevState[name].filter(item => item !== value)
+                    : [...prevState[name], value]
             }));
         }
         else{
@@ -37,27 +39,45 @@ const HomePage = ()=>{
         }
     };
 
-    const handlePleaSubmit = (e) => {
+    const handlePleaSubmit = async (e) => {
         e.preventDefault();
         alert('Thank you for submitting your plea! We will review it and get back to you soon.');
-        //Add api here for submit
         
-        // Reset form state after submission
-        setPleaData({
-            name: '',
-            gender: '',
-            DOB: '',
-            email: '',
-            phone: '',
-            education: '',
-            maritalStatus: '',
-            address: '',
-            city: '',
-            state: '',
-            categories: [],
-            plea: '',
-            description: '',
-        });
+        try {
+            // console.log(pleaData);
+            const response = await fetch('http://localhost:5000/api/newAnonQuery', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify(pleaData), 
+                
+            });
+      
+            if (!response.ok) {
+                const errorText = await response.text();  
+                throw new Error(errorText);
+            }
+
+            setPleaData({
+              victimName: '',
+              gender: '',
+              dob: '',
+              phone: '',
+              email: '',
+              maritalStatus: '',
+              education: '',
+              address: '',
+              city: '',
+              state: '',
+              title: '',
+              category: '',
+              description: '',
+            });
+        } catch (error) {
+            alert('Error during the API request:', error);
+        }
+        
     };
 
     const [userData, setUserData] = useState({
@@ -76,7 +96,7 @@ const HomePage = ()=>{
 
     const handleUserDataChange = (e) => {
         const { name, value } = e.target;
-        if(name === "categories"){
+        if(name === "category"){
             setUserData(prevState => ({
                 ...prevState,
                 [name]: [...prevState[name], value]
@@ -109,8 +129,9 @@ const HomePage = ()=>{
     
             const result = await response.json();  // Parse the JSON response
             console.log('Success:', result);
+            alert("Your usercode is: " + result.usercode);
         } catch (error) {
-            console.error('Error during the API request:', error);
+            alert('Error during the API request:'+error);
         }
     };
     
@@ -297,13 +318,13 @@ const HomePage = ()=>{
                         </div>
 
                         <div className="form-group">
-                    <label htmlFor="DOB">Date of Birth:</label>
+                    <label htmlFor="dob">Date of Birth:</label>
                         <input 
                             type="date" 
                             id="DOB" 
-                            name="DOB" 
+                            name="dob" 
                             required
-                            value={pleaData.DOB}
+                            value={pleaData.dob}
                             onChange={handlePleaChange}
                         />
                     </div>
@@ -344,12 +365,12 @@ const HomePage = ()=>{
                             onChange={handlePleaChange}
                         >
                             <option value="" disabled>Select your qualification</option>
-                            <option value="schooling-not-completed">Schooling Not Completed</option>
-                            <option value="10th-pass">10th Grade Pass</option>
-                            <option value="12th-pass">12th Grade Pass</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="undergraduate">Undergraduate</option>
-                            <option value="graduate-postgraduate">Graduate/Postgraduate</option>
+                            <option value="None">Schooling Not Completed</option>
+                            <option value="Primary">10th Grade Pass</option>
+                            <option value="Secondary">12th Grade Pass</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="UG">Undergraduate</option>
+                            <option value="PG">Graduate/Postgraduate</option>
                         </select>
                     </div>
 
@@ -438,8 +459,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="harassment" 
                                     name="category" 
-                                    value="harassment"
-                                    checked={pleaData.categories.includes('harassment')}
+                                    value="Harassment"
+                                    checked={pleaData.category.includes('Harassment')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="harassment">Harassment</label>
@@ -449,8 +470,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="forced-labour" 
                                     name="category" 
-                                    value="forced-labour"
-                                    checked={pleaData.categories.includes('forced-labour')}
+                                    value="Forced Labour"
+                                    checked={pleaData.category.includes('Forced Labour')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="forced-labour">Forced Labour</label>
@@ -460,8 +481,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="human-trafficking" 
                                     name="category" 
-                                    value="human-trafficking"
-                                    checked={pleaData.categories.includes('human-trafficking')}
+                                    value="Human Trafficking"
+                                    checked={pleaData.category.includes('Human Trafficking')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="human-trafficking">Human Trafficking</label>
@@ -471,8 +492,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="child-marriage" 
                                     name="category" 
-                                    value="child-marriage"
-                                    checked={pleaData.categories.includes('child-marriage')}
+                                    value="Child Marriage"
+                                    checked={pleaData.category.includes('Child Marriage')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="child-marriage">Child Marriage</label>
@@ -482,8 +503,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="domestic-violence" 
                                     name="category" 
-                                    value="domestic-violence"
-                                    checked={pleaData.categories.includes('domestic-violence')}
+                                    value="Domestic Violence"
+                                    checked={pleaData.category.includes('Domestic Violence')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="domestic-violence">Domestic Violence</label>
@@ -493,8 +514,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="dowry" 
                                     name="category" 
-                                    value="dowry"
-                                    checked={pleaData.categories.includes('dowry')}
+                                    value="Dowry"
+                                    checked={pleaData.category.includes('Dowry')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="dowry">Dowry</label>
@@ -504,8 +525,8 @@ const HomePage = ()=>{
                                     type="checkbox" 
                                     id="rehabilitation-assistance" 
                                     name="category" 
-                                    value="rehabilitation-assistance"
-                                    checked={pleaData.categories.includes('rehabilitation-assistance')}
+                                    value="Rehabilitation"
+                                    checked={pleaData.category.includes('Rehabilitation')}
                                     onChange={handlePleaChange}
                                 />
                                 <label htmlFor="rehabilitation-assistance">Rehabilitation Assistance</label>

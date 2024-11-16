@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
 // Function to check authentication (e.g., valid JWT in sessionStorage)

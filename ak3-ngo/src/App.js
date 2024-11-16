@@ -6,6 +6,8 @@ import NGOPortal from './components/NGO-Portal/NGO-Portal';
 import HomePage from './components/Home-Page/Home-Page'
 import SisterLogin from './components/NGO-Login/sister-login';
 import PoliceLogin from './components/Police-Login/police-login';
+import AdminLogin from './components/Admin-Login/admin-login';
+import AdminPortal from './components/Admin-Portal/Admin-Portal';
 import UserLogin from './components/User-Login/user-login';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -20,6 +22,7 @@ function App(){
         <Route path="/user/login" element={<UserLogin/>} />
         <Route path="/sister-ngo/login" element={<SisterLogin/>} />
         <Route path="/police/login" element={<PoliceLogin/>} />
+        <Route path="/admin/login" element={<AdminLogin/>} />
         <Route path="/user"
           element={
             <ProtectedRoute redirectPath="/user/login" role='user'>
@@ -36,6 +39,12 @@ function App(){
           element={
             <ProtectedRoute redirectPath="/police/login" role='police'>
               <PolicePortal />
+            </ProtectedRoute>
+        }/>
+        <Route path="/admin"
+          element={
+            <ProtectedRoute redirectPath="/admin/login" role='admin'>
+              <AdminPortal />
             </ProtectedRoute>
         }/>
       </Routes>
