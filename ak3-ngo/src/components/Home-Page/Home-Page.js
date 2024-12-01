@@ -11,7 +11,7 @@ const HomePage = ()=>{
         dob: '',
         email: '',
         phone: '',
-        education: '',
+        education: 'None',
         maritalStatus: '',
         address: '',
         city: '',
@@ -170,12 +170,13 @@ const HomePage = ()=>{
         <div className="homePage">
             <nav>
                 <h1 class="logo">(AK)<sup>3</sup>'s NGO</h1>
+                {/* <img src="Logo.png" alt="AK3 NGO" class="icon" width="150rem"/> */}
                 <ul class="center-links">
                     <li><button onClick={() => setActiveSection('home')}>Home Page</button></li>
                     <li><button onClick={() => setActiveSection('about-us')}>About Us</button></li>
                     <li><button onClick={() => setActiveSection('contact-us')}>Contact Us</button></li>
                     <li><button onClick={() => setActiveSection('register-plea')}>Register Plea</button></li>
-                    <li><button onClick={() => setActiveSection('donate')}>Donate</button></li>
+                    {/* <li><button onClick={() => setActiveSection('donate')}>Donate</button></li> */}
                 </ul>
                 <ul class="right-links">
                     <li><button onClick={() => setActiveSection('login')}>Login</button></li>

@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const querySchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    category: [{ type: String, enum: ["Harrassment", "Forced Labor", 
-        "Human Trafficking", "Child Marriage", "DOmestic Violence", 
+    category: [{ type: String, enum: ["Harassment", "Forced Labour", 
+        "Human Trafficking", "Child Marriage", "Domestic Violence", 
         "Dowry", "Rehabilitation"], required: true }],
     // files: [{
     //     data: { type: Buffer, required: true }, 
@@ -40,28 +40,3 @@ const querySchema = new mongoose.Schema({
 const Query = mongoose.model("Query", querySchema);
 
 module.exports = Query;
-
-
-/* 1. Victim"s Name - "input"
-2. Gender - "checkbox/radio button"
-3. DOB - "DOB input"
-4. Age - "age/number"
-4. Phone - "input tel"
-5. Email Address - "email input" 
-6. Marital Status (Minor/Unmarried/Married) - "radio"
-8. Educational Qualification - "drop-down option"
-9. Residential Address - "textarea"
-10. City/Town - "input/drop-down(too tedious)"
-11. State - "input/drop-down(too tedious)"
-12. Category [Nature of Atrocity/Assistance] (Drop-Down Menu)
-13. Description - "textarea"
-14. Choose File - "input file"
-
-NGO Categories: 
-1. Harassment
-2. Forced Labour
-3. Human Trafficking
-4. Child Marriage
-5. Domestic Violence
-6. Dowry
-7. Rehabilitation-Assistance */

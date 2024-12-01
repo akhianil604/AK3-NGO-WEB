@@ -624,6 +624,7 @@ userPortalContainer .close:hover,
     color: white;
     padding: 15px;
     border-radius: 10px;
+    width: 200px;
 }
 
 .userPortalContainer .delete-btn:hover{

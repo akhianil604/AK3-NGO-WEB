@@ -34,7 +34,7 @@ const RegisterPlea = ({ MyQueries, setMyQueries })=>{
                 [name]: value
             }));
         }
-        // console.log(formData);
+        console.log(formData);
     };
 
     const handlePleaSubmit = async(e) => {

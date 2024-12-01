@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/mydb');   // Import the connectDB function
 const routes = require('./routes/routes');
-const { generateToken } = require('./auth');
+// const { generateToken } = require('./auth');
 
 // Initialize Express app
 const app = express();
